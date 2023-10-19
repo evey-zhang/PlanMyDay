@@ -38,6 +38,8 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+		System.out.println("HI");
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
