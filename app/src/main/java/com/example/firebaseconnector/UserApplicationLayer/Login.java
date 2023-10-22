@@ -69,27 +69,28 @@ public class Login extends AppCompatActivity {
 
                 //check if email and/or password is empty
                 if (email.isEmpty()){
+                    Toast.makeText(Login.this, "Email is missing.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (password.isEmpty()){
+                    Toast.makeText(Login.this, "Password is missing.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 //create user in firebase -- code from firebase docs:https://firebase.google.com/docs/auth/android/password-auth#java_1
-                mAuth.createUserWithEmailAndPassword(email, password)
+                mAuth.signInWithEmailAndPassword(email,password)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(Login.this, "Register Successful.",
+                                    Toast.makeText(Login.this, "Login successful.",
                                             Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
                                     // If Login fails, display a message to the user.
-                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                     Toast.makeText(Login.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
 

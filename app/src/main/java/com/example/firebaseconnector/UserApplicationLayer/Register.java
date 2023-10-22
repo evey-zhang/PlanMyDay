@@ -68,9 +68,11 @@ public class Register extends AppCompatActivity {
 
                 //check if email and/or password is empty
                 if (email.isEmpty()){
+                    Toast.makeText(Register.this, "Email is missing.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (password.isEmpty()){
+                    Toast.makeText(Register.this, "Password is missing.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -84,9 +86,9 @@ public class Register extends AppCompatActivity {
                                     Toast.makeText(Register.this, "Register Successful.",
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    // If Register fails, display a message to the user.
+                                    // If Register fails, display a message to the user. Note: password must be at least 6 characters
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(Register.this, "Authentication failed.",
+                                    Toast.makeText(Register.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
 
                                 }

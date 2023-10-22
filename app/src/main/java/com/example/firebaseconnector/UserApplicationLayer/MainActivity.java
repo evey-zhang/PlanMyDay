@@ -1,5 +1,6 @@
 package com.example.firebaseconnector.UserApplicationLayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.firebaseconnector.R;
@@ -34,7 +35,30 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main);
+
+        auth=FirebaseAuth.getInstance();
+        button = findViewById(R.id.logout);
+        user = auth.getCurrentUser();
+        if (user == null){
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            //move onto next step of the app
+        }
+        button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+
 ;
 
     }

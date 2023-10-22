@@ -5,7 +5,6 @@
     android:id="@+id/nestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background=""
     tools:context=".FirstFragment">
 
 
@@ -33,12 +32,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#30fffff"
         android:drawableLeft="@drawable/baseline_person_outline_24"
         android:drawablePadding="20dp"
         android:hint="Username"
-        android:padding="20dp"
-        android:inputType="textUsername"/>
+        android:padding="20dp" />
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"

@@ -14,13 +14,16 @@
         android:theme="@style/Theme.FireBaseConnector"
         tools:targetApi="31">
         <activity
-            android:name=".UserApplicationLayer.Login"
+            android:name=".UserApplicationLayer.MainActivity"
             android:exported="false" />
+
+
+
         <activity
             android:name=".UserApplicationLayer.Register"
             android:exported="false" />
         <activity
-            android:name=".UserApplicationLayer.MainActivity"
+            android:name=".UserApplicationLayer.Login"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.FireBaseConnector">
