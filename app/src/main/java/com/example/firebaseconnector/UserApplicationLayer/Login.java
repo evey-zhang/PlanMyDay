@@ -1,6 +1,5 @@
 package com.example.firebaseconnector.UserApplicationLayer;
 
-import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
