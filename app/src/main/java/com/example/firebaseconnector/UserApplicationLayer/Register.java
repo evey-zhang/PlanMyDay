@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,10 +17,19 @@ import android.widget.Toast;
 
 import com.example.firebaseconnector.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Register extends AppCompatActivity {
 
@@ -37,6 +47,23 @@ public class Register extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+    }
+    //Add new user to database
+    private void addUser(String userID, String email, String password) {
+        List<Attraction> myAttractions = new ArrayList<>();
+        User newUser = new User(email, password, myAttractions);
+        DatabaseReference mDatabase;
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+
+        mDatabase.child(userID).setValue(newUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(Register.this, "Successfully added new user to database.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +85,7 @@ public class Register extends AppCompatActivity {
             }
 
         });
+
 
         //Click "Register" to register user with firebase
         buttonRegister.setOnClickListener((new View.OnClickListener() {
@@ -85,6 +113,11 @@ public class Register extends AppCompatActivity {
                                     // Register Successful
                                     Toast.makeText(Register.this, "Register Successful.",
                                             Toast.LENGTH_SHORT).show();
+
+                                    //add user to database
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    String userID = user.getUid();
+                                    addUser(userID, email,password);
                                 } else {
                                     // If Register fails, display a message to the user. Note: password must be at least 6 characters
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
