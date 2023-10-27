@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="330dp"
+	android:layout_height="120dp"
+	>
+	<FrameLayout
+		android:id="@+id/component_container"
+		android:layout_width="330dp"
+		android:layout_height="120dp"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		android:background="#FEFEFE">
+
+		<TextView
+			android:id="@+id/cell_time"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="7:00am - 8:00pm"
+			android:textSize="8sp"
+			android:textColor="#FEFEFE"
+			android:background="#EFABAB"
+			android:padding="8dp"
+			android:layout_gravity="start|top"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="15dp" />
+
+		<TextView
+			android:id="@+id/cell_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="USC Dulce"
+			android:textSize="13sp"
+			android:textColor="#000000"
+			android:gravity="start"
+			android:textStyle="bold"
+			android:layout_gravity="start|top"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="46dp"/>
+
+		<View
+			android:id="@+id/line_4"
+			android:layout_height="2dp"
+			android:layout_width="70dp"
+			android:background="@drawable/line_3"
+			android:layout_gravity="start|top"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="66dp"/>
+
+		<TextView
+			android:id="@+id/cell_address"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="USC Village, 90007\n"
+			android:textSize="10sp"
+			android:textColor="#000000"
+			android:gravity="start"
+			android:layout_gravity="start|top"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="75dp"/>
+
+	</FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

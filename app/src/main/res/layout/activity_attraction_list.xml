@@ -6,4 +6,168 @@
     android:layout_height="match_parent"
     tools:context=".UserApplicationLayer.AttractionList">
 
+	<RelativeLayout
+	android:id="@+id/attractions"
+	android:layout_width="0dp"
+	android:layout_height="0dp"
+	android:clipToOutline="true"
+	android:background="#FFECEC"
+	app:layout_constraintTop_toTopOf="parent"
+	app:layout_constraintBottom_toBottomOf="parent"
+	app:layout_constraintStart_toStartOf="parent"
+	app:layout_constraintEnd_toEndOf="parent">
+
+
+		<ImageView
+			android:id="@+id/ellipse_2"
+			android:layout_width="match_parent"
+			android:layout_height="386.14dp"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentTop="true"
+			android:layout_marginLeft="2dp"
+			android:layout_marginTop="-116dp"
+			android:scaleType="centerCrop"
+			android:src="@drawable/ellipse" />
+
+		<TextView
+			android:id="@+id/attraction_text"
+			android:layout_width="159dp"
+			android:layout_height="25dp"
+			android:layout_alignParentLeft="true"
+			android:layout_marginLeft="45dp"
+			android:layout_alignParentTop="true"
+			android:layout_marginTop="70dp"
+			android:text="Attractions"
+			android:textSize="15sp"
+			android:textColor="#000000"
+			android:gravity="top"
+			android:textStyle="bold"
+			/>
+
+		<TextView
+			android:id="@+id/recommended_text"
+			android:layout_width="159dp"
+			android:layout_height="25dp"
+			android:layout_alignParentLeft="true"
+			android:layout_marginLeft="49dp"
+			android:layout_alignParentTop="true"
+			android:layout_marginTop="125dp"
+			android:text="Recommended"
+			android:textSize="12sp"
+			android:textColor="#000000"
+			android:gravity="top"
+			android:textStyle="bold"
+			/>
+
+		<View
+			android:id="@+id/line_3"
+			android:layout_width="62dp"
+			android:layout_height="3dp"
+			android:layout_alignParentLeft="true"
+			android:layout_marginLeft="45dp"
+			android:layout_alignParentTop="true"
+			android:layout_marginTop="95dp"
+			android:textSize="12sp"
+			android:textColor="#000000"
+			android:background="@drawable/line_3"
+			/>
+
+		<RelativeLayout
+			xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/cell_collection_view"
+			android:layout_width="340dp"
+			android:layout_height="563dp"
+			android:layout_centerHorizontal="true"
+			android:layout_alignParentTop="true"
+			android:layout_marginTop="150dp" >
+
+			<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/recycler_view"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"/>
+
+<!--			<RelativeLayout-->
+<!--				xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--				android:id="@+id/cell_view"-->
+<!--				android:layout_width="330dp"-->
+<!--				android:layout_height="120dp"-->
+<!--				android:layout_alignParentLeft="true"-->
+<!--				android:layout_alignParentTop="true"-->
+<!--				android:background="#FEFEFE"-->
+<!--				>-->
+
+<!--				<RelativeLayout-->
+<!--					android:id="@+id/cell_time_"-->
+<!--					android:layout_width="80.58dp"-->
+<!--					android:layout_height="21.46dp"-->
+<!--					android:layout_alignParentLeft="true"-->
+<!--					android:layout_marginLeft="16.63dp"-->
+<!--					android:layout_alignParentTop="true"-->
+<!--					android:layout_marginTop="15.63dp"-->
+<!--					android:background="#EFABAB"-->
+<!--					>-->
+
+<!--					<TextView-->
+<!--						android:id="@+id/cell_time"-->
+<!--						android:layout_width="wrap_content"-->
+<!--						android:layout_height="wrap_content"-->
+<!--						android:layout_centerInParent="true"-->
+<!--						android:text="7:00am - 8:00pm"-->
+<!--						android:textSize="8sp"-->
+<!--						android:textColor="#FEFEFE" />-->
+
+<!--				</RelativeLayout>-->
+
+
+
+<!--				<TextView-->
+<!--					android:id="@+id/cell_attraction"-->
+<!--					android:layout_width="203.37dp"-->
+<!--					android:layout_height="24.39dp"-->
+<!--					android:layout_alignParentLeft="true"-->
+<!--					android:layout_marginLeft="16.63dp"-->
+<!--					android:layout_alignParentTop="true"-->
+<!--					android:layout_marginTop="46.83dp"-->
+<!--					android:text="USC Dulce"-->
+<!--					android:textSize="13sp"-->
+<!--					android:textColor="#000000"-->
+<!--					android:gravity="top"-->
+<!--					android:textStyle="bold"-->
+<!--					/>-->
+
+<!--				<View-->
+<!--					android:id="@+id/line_4"-->
+<!--					android:layout_width="82.09dp"-->
+<!--					android:layout_height="2dp"-->
+<!--					android:layout_alignParentLeft="true"-->
+<!--					android:layout_marginLeft="16.63dp"-->
+<!--					android:layout_alignParentTop="true"-->
+<!--					android:layout_marginTop="66.34dp"-->
+<!--					android:background="@drawable/line_3"-->
+<!--					/>-->
+
+<!--				<TextView-->
+<!--					android:id="@+id/address"-->
+<!--					android:layout_width="203.37dp"-->
+<!--					android:layout_height="24.39dp"-->
+<!--					android:layout_alignParentLeft="true"-->
+<!--					android:layout_marginLeft="16.63dp"-->
+<!--					android:layout_alignParentTop="true"-->
+<!--					android:layout_marginTop="75.12dp"-->
+<!--					android:text="USC Village, 90007\n"-->
+<!--					android:textSize="10sp"-->
+<!--					android:textColor="#000000"-->
+<!--					android:gravity="top"-->
+<!--					/>-->
+
+
+<!--			</RelativeLayout>-->
+
+
+		</RelativeLayout>
+
+	</RelativeLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,67 +1,97 @@
 package com.example.firebaseconnector.UserApplicationLayer;
 
 public class Attraction {
-    private int id;
-    private String name;
-    private Double longitude;
-    private Double latitude;
-    private String openTime;
-    private String closeTime;
-    private String description;
+	private String id;
+	private String name;
 
-    public int getId() {
-        return id;
-    }
+	private String address;
+	private String longitude;
+	private String latitude;
+	private String openTime;
+	private String closeTime;
+	private String description;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public Attraction() {
+	}
 
-    public String getName() {
-        return name;
-    }
+//    public Attraction(int id, String name, String address, Double longitude, Double latitude, String openTime, String closeTime, String description) {
+//        this.id = id;
+//        this.name = name;
+//        this.address = address;
+//        this.longitude = longitude;
+//        this.latitude = latitude;
+//        this.openTime = openTime;
+//        this.closeTime = closeTime;
+//        this.description = description;
+//    }
+//
+//    public Attraction(String name, String address, String openTime, String closeTime) {
+//        this.name = name;
+//        this.address = address;
+//        this.openTime = openTime;
+//        this.closeTime = closeTime;
+//    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public Double getLongitude() {
-        return longitude;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public Double getLatitude() {
-        return latitude;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
+	public String getLongitude() {
+		return longitude;
+	}
 
-    public String getOpenTime() {
-        return openTime;
-    }
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 
-    public void setOpenTime(String openTime) {
-        this.openTime = openTime;
-    }
+	public String getLatitude() {
+		return latitude;
+	}
 
-    public String getCloseTime() {
-        return closeTime;
-    }
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
 
-    public void setCloseTime(String closeTime) {
-        this.closeTime = closeTime;
-    }
+	public String getOpenTime() {
+		return openTime;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getCloseTime() {
+		return closeTime;
+	}
+
+	public void setCloseTime(String closeTime) {
+		this.closeTime = closeTime;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 }
