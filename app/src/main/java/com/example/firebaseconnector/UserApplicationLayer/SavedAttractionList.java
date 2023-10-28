@@ -24,10 +24,9 @@ import java.util.ArrayList;
 public class SavedAttractionList extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<Attraction> attractionList;
-    DatabaseReference savedAttractionReference;
+    DatabaseReference databaseReference;
     MyAdapter adapter;
 
-    // Get the current Firebase user
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -43,30 +42,32 @@ public class SavedAttractionList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_attraction_list);
         recyclerView = findViewById(R.id.recycleView);
+        databaseReference = FirebaseDatabase.getInstance().getReference("attractions");
         attractionList = new ArrayList<>();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));//get current user's ID
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MyAdapter(this,attractionList);
+        recyclerView.setAdapter(adapter);
+        String uid = "";
         if (currentUser != null) {
-            String uid = currentUser.getUid();
+            uid = currentUser.getUid();
             // Now, 'uid' contains the UID of the current user
             System.out.println("Current user's UID: " + uid);
         } else {
             // There is no signed-in user
             System.out.println("No signed-in user");
         }
-        savedAttractionReference = FirebaseDatabase.getInstance().getReference().child("Users").child("uid").child("attractionList");
-        adapter = new MyAdapter(this,attractionList);
-        recyclerView.setAdapter(adapter);
-        Log.d("adapterwoo","should continue");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("attractionList");
 
-        savedAttractionReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long numberOfChildren = snapshot.getChildrenCount();
+                System.out.println("Number of objects in the databaseReference: " + numberOfChildren);
+
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Log.d("Attraction Data", dataSnapshot.getValue().toString());
 
                     Attraction attraction = dataSnapshot.getValue(Attraction.class);
                     attractionList.add(attraction);
-                    Log.d("my saved attractions!", attraction.getName());
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -76,6 +77,7 @@ public class SavedAttractionList extends AppCompatActivity {
 
             }
         });
+
 
     }
     //list of all the saved attractions
