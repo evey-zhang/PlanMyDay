@@ -51,6 +51,9 @@ public class Register extends AppCompatActivity {
     //Add new user to database
     private void addUser(String userID, String email, String password) {
         List<Attraction> myAttractions = new ArrayList<>();
+        Attraction dummyAttraction = new Attraction("attraction1", "heag" , "meo", "dsfas", "asdf", "asdff", "abbbb", "dfas");
+        myAttractions.add(dummyAttraction);
+
         User newUser = new User(email, password, myAttractions);
         DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");

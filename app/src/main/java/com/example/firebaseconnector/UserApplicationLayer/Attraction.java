@@ -14,17 +14,17 @@ public class Attraction {
 	public Attraction() {
 	}
 
-//    public Attraction(int id, String name, String address, Double longitude, Double latitude, String openTime, String closeTime, String description) {
-//        this.id = id;
-//        this.name = name;
-//        this.address = address;
-//        this.longitude = longitude;
-//        this.latitude = latitude;
-//        this.openTime = openTime;
-//        this.closeTime = closeTime;
-//        this.description = description;
-//    }
-//
+    public Attraction(String id, String name, String address, String longitude, String latitude, String openTime, String closeTime, String description) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.openTime = openTime;
+        this.closeTime = closeTime;
+        this.description = description;
+    }
+
 //    public Attraction(String name, String address, String openTime, String closeTime) {
 //        this.name = name;
 //        this.address = address;
