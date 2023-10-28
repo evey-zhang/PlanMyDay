@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.firebaseconnector.R;
 
 import java.util.ArrayList;
-
+//ADAPTER FOR "SAVED ATTRACTIONS"
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private ArrayList<Attraction> attractionList;
