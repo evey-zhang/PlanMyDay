@@ -25,12 +25,12 @@ public class Attraction {
         this.description = description;
     }
 
-//    public Attraction(String name, String address, String openTime, String closeTime) {
-//        this.name = name;
-//        this.address = address;
-//        this.openTime = openTime;
-//        this.closeTime = closeTime;
-//    }
+    public Attraction(String name, String address, String openTime, String closeTime) {
+        this.name = name;
+        this.address = address;
+        this.openTime = openTime;
+        this.closeTime = closeTime;
+    }
 
 	public String getId() {
 		return id;

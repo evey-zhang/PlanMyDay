@@ -10,6 +10,8 @@ import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.example.firebaseconnector.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,8 +24,12 @@ import java.util.ArrayList;
 public class SavedAttractionList extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<Attraction> attractionList;
-    DatabaseReference databaseReference;
+    DatabaseReference savedAttractionReference;
     MyAdapter adapter;
+
+    // Get the current Firebase user
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
 
     @Override
     public void onBackPressed() {
@@ -37,19 +43,30 @@ public class SavedAttractionList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_attraction_list);
         recyclerView = findViewById(R.id.recycleView);
-        databaseReference = FirebaseDatabase.getInstance().getReference("attractions");
         attractionList = new ArrayList<>();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));//get current user's ID
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+            // Now, 'uid' contains the UID of the current user
+            System.out.println("Current user's UID: " + uid);
+        } else {
+            // There is no signed-in user
+            System.out.println("No signed-in user");
+        }
+        savedAttractionReference = FirebaseDatabase.getInstance().getReference().child("Users").child("uid").child("attractionList");
         adapter = new MyAdapter(this,attractionList);
         recyclerView.setAdapter(adapter);
+        Log.d("adapterwoo","should continue");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        savedAttractionReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Log.d("Attraction Data", dataSnapshot.getValue().toString());
 
                     Attraction attraction = dataSnapshot.getValue(Attraction.class);
                     attractionList.add(attraction);
+                    Log.d("my saved attractions!", attraction.getName());
                 }
                 adapter.notifyDataSetChanged();
             }

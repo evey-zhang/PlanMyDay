@@ -8,6 +8,77 @@
     tools:context=".UserApplicationLayer.LandingPage">
 
 
+    <RelativeLayout
+        android:id="@+id/landingPage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToOutline="true"
+        android:background="#FFECEC"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <ImageView
+            android:id="@+id/ellipse_2"
+            android:layout_width="match_parent"
+            android:layout_height="386.14dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="-116dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ellipse" />
+
+        <TextView
+            android:id="@+id/landingText"
+            android:layout_width="159dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="70dp"
+            android:text="Plan My Day"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:gravity="top"
+            android:textStyle="bold"
+            />
+
+        <View
+            android:id="@+id/line_3"
+            android:layout_width="62dp"
+            android:layout_height="3dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="45dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="95dp"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            android:background="@drawable/line_3"
+            />
+
+        <Button
+            android:id="@+id/attractionListButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/landingText"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="75dp"
+            android:text="Attraction List" />
+
+        <Button
+            android:id="@+id/SavedAttractionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/attractionListButton"
+            android:layout_centerHorizontal = "true"
+            android:layout_marginTop="75dp"
+            android:text="Saved Attractions " />
+    </RelativeLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
