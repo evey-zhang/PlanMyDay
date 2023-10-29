@@ -63,8 +63,8 @@
 			android:layout_marginLeft="39dp"
 			android:layout_marginTop="150dp"
 			android:background="#FEFEFE"
-			app:cardCornerRadius="10dp"
-			android:elevation="0dp">
+			android:elevation="0dp"
+			app:cardCornerRadius="10dp">
 
 			<FrameLayout
 				android:id="@+id/component_container"
@@ -125,15 +125,18 @@
 
 		</androidx.cardview.widget.CardView>
 
+		<!-- Auto layout, variables, and unit scale are not yet supported -->
+
+		<!-- Auto layout, variables, and unit scale are not yet supported -->
 		<androidx.cardview.widget.CardView
-			android:layout_width="330dp"
-			android:layout_height="263dp"
+			android:layout_width="331dp"
+			android:layout_height="222dp"
 			android:layout_alignParentLeft="true"
 			android:layout_alignParentTop="true"
-			android:layout_marginLeft="39dp"
+			android:layout_marginLeft="38dp"
 			android:layout_marginTop="303dp"
-			app:cardCornerRadius="10dp"
-			android:background="#FEFEFE">
+			android:background="#FEFEFE"
+			app:cardCornerRadius="10dp">
 
 			<TextView
 				android:layout_width="159dp"
@@ -146,8 +149,8 @@
 				android:gravity="top"
 				android:text="Description"
 				android:textColor="#000000"
-				android:textStyle="bold"
-				android:textSize="13sp" />
+				android:textSize="13sp"
+				android:textStyle="bold" />
 
 			<View
 				android:layout_width="72dp"
@@ -161,19 +164,43 @@
 			<TextView
 				android:id="@+id/description_text"
 				android:layout_width="210dp"
-				android:layout_height="196dp"
+				android:layout_height="146dp"
 				android:layout_alignParentLeft="true"
-				android:layout_marginLeft="29dp"
 				android:layout_alignParentTop="true"
+				android:layout_marginLeft="29dp"
 				android:layout_marginTop="44dp"
-				android:text="blah_blah_b"
-				android:textSize="11sp"
-				android:textColor="#000000"
 				android:gravity="top"
-				/>
+				android:text="blah_blah_b"
+				android:textColor="#000000"
+				android:textSize="11sp" />
 
 
 		</androidx.cardview.widget.CardView>
+
+		<Button
+			android:id="@+id/save_button"
+			android:layout_width="118dp"
+			android:layout_height="44dp"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentTop="true"
+			android:layout_marginLeft="140dp"
+			android:layout_marginTop="550dp"
+			android:backgroundTint="#EFABAB"
+			android:elevation="4dp"
+			android:text="Save" />
+
+		<Button
+			android:id="@+id/remove_button"
+			android:layout_width="118dp"
+			android:layout_height="44dp"
+			android:layout_alignParentTop="true"
+			android:layout_alignParentRight="true"
+			android:layout_marginTop="605dp"
+			android:layout_marginRight="153dp"
+			android:backgroundTint="#EFABAB"
+			android:elevation="4dp"
+			android:text="Remove" />
+
 
 	</RelativeLayout>
 
