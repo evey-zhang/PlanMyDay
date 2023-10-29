@@ -5,9 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.firebaseconnector.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,7 +68,7 @@ public class SavedAttractionList extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long numberOfChildren = snapshot.getChildrenCount();
                 System.out.println("Number of objects in the databaseReference: " + numberOfChildren);
-
+                attractionList.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
 
                     Attraction attraction = dataSnapshot.getValue(Attraction.class);
@@ -77,8 +82,56 @@ public class SavedAttractionList extends AppCompatActivity {
 
             }
         });
+        //REMOVE ATTRACTION
+        Attraction attraction = getIntent().getParcelableExtra("Remove Attraction");
+        if (attraction != null){
+            removeAttractionFromDB(attraction);
+            adapter.notifyDataSetChanged();
+        }
+        else{
+            System.out.println("No attraction to remove");
+        }
 
 
+        //LISTENER FOR BACK BUTTON
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(), LandingPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+    //REMOVE ATTRACTION:
+    private void removeAttractionFromDB(Attraction targetAttraction) {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String keyToRemove = null;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Attraction existingAttraction = snapshot.getValue(Attraction.class);
+                    if (existingAttraction != null && existingAttraction.getId().equals(targetAttraction.getId())) {
+                        keyToRemove = snapshot.getKey();
+                        break;
+                    }
+                }
+                if (keyToRemove != null) {
+                    databaseReference.child(keyToRemove).removeValue()
+                            .addOnSuccessListener(aVoid -> Toast.makeText(SavedAttractionList.this, "Attraction removed successfully!", Toast.LENGTH_SHORT).show())
+                            .addOnFailureListener(e -> Toast.makeText(SavedAttractionList.this, "Failed to remove attraction.", Toast.LENGTH_SHORT).show());
+                } else {
+                    Toast.makeText(SavedAttractionList.this, "Attraction not found in list.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(SavedAttractionList.this, "Error accessing database.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     //list of all the saved attractions
 

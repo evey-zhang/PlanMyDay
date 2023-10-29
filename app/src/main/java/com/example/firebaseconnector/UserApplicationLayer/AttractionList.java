@@ -1,10 +1,15 @@
 package com.example.firebaseconnector.UserApplicationLayer;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.firebaseconnector.R;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +33,7 @@ public class AttractionList extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_attraction_list);
+
 
 		recyclerView = findViewById(R.id.recycler_view);
 
@@ -58,6 +64,17 @@ public class AttractionList extends AppCompatActivity {
 
 			}
 		});
+
+		//LISTENER FOR BACK BUTTON
+		ImageButton backButton = findViewById(R.id.backButton);
+		backButton.setOnClickListener(new View.OnClickListener(){
+			public void onClick(View view){
+				Intent intent = new Intent(getApplicationContext(), LandingPage.class);
+				startActivity(intent);
+				finish();
+			}
+		});
+
 	}
 
 }
