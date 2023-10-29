@@ -50,6 +50,7 @@ public class Register extends AppCompatActivity {
     }
     //Add new user to database
     private void addUser(String userID, String email, String password) {
+
         List<Attraction> myAttractions = new ArrayList<>();
         Attraction dummyAttraction = new Attraction("attraction1", "heag" , "meo", "dsfas", "asdf", "asdff", "abbbb", "dfas");
         myAttractions.add(dummyAttraction);
@@ -64,8 +65,6 @@ public class Register extends AppCompatActivity {
                 Toast.makeText(Register.this, "Successfully added new user to database.", Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
     }
     @Override

@@ -7,7 +7,7 @@
     tools:context=".UserApplicationLayer.AttractionList">
 
 	<RelativeLayout
-	android:id="@+id/attractions"
+	android:id="@+id/attraction"
 	android:layout_width="0dp"
 	android:layout_height="0dp"
 	android:clipToOutline="true"
@@ -19,7 +19,7 @@
 
 
 		<ImageView
-			android:id="@+id/ellipse_2"
+			android:id="@+id/ellipse"
 			android:layout_width="match_parent"
 			android:layout_height="386.14dp"
 			android:layout_alignParentLeft="true"

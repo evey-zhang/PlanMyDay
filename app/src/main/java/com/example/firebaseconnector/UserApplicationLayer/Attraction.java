@@ -1,6 +1,11 @@
 package com.example.firebaseconnector.UserApplicationLayer;
 
-public class Attraction {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Attraction implements Parcelable {
 	private String id;
 	private String name;
 
@@ -31,6 +36,29 @@ public class Attraction {
         this.openTime = openTime;
         this.closeTime = closeTime;
     }
+
+	protected Attraction(Parcel in) {
+		id = in.readString();
+		name = in.readString();
+		address = in.readString();
+		longitude = in.readString();
+		latitude = in.readString();
+		openTime = in.readString();
+		closeTime = in.readString();
+		description = in.readString();
+	}
+
+	public static final Creator<Attraction> CREATOR = new Creator<Attraction>() {
+		@Override
+		public Attraction createFromParcel(Parcel in) {
+			return new Attraction(in);
+		}
+
+		@Override
+		public Attraction[] newArray(int size) {
+			return new Attraction[size];
+		}
+	};
 
 	public String getId() {
 		return id;
@@ -93,5 +121,22 @@ public class Attraction {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(@NonNull Parcel parcel, int i) {
+		parcel.writeString(id);
+		parcel.writeString(name);
+		parcel.writeString(address);
+		parcel.writeString(longitude);
+		parcel.writeString(latitude);
+		parcel.writeString(openTime);
+		parcel.writeString(closeTime);
+		parcel.writeString(description);
 	}
 }
