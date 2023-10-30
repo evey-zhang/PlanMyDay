@@ -11,10 +11,12 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.firebaseconnector.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SavedAttractionList extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -44,6 +47,7 @@ public class SavedAttractionList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_attraction_list);
         recyclerView = findViewById(R.id.recycleView);
@@ -103,8 +107,51 @@ public class SavedAttractionList extends AppCompatActivity {
             }
         });
 
+        //CREATE ROUTE BUTTON + SET DAYS OF TRIP:
+        Button createRoute = findViewById(R.id.createRouteButton);
+        EditText numDays = findViewById(R.id.numberDays);
+        createRoute.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+
+                String numberDays = (String.valueOf(numDays.getText()));
+                try{//is integer
+                    int intNumberDays = Integer.parseInt(numberDays);
+                    if (intNumberDays > 0){ setDays(intNumberDays);}
+                    else{
+                        Toast.makeText(SavedAttractionList.this, "Days cannot be less than 1", Toast.LENGTH_SHORT).show();
+                    }
+                    //SET INTENT TO CREATE ROUTE ACTIVITY
+                    Intent intent = new Intent(getApplicationContext(), LandingPage.class);
+                    startActivity(intent);
+                    finish();
+
+                } catch (NumberFormatException e) {
+                    // not an integer!
+                    Toast.makeText(SavedAttractionList.this, "Please Enter a valid number of at least 1", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+
+            }
+        });
+
     }
 
+    //Enter Number Of Days
+    private void setDays(int days) {
+
+        DatabaseReference mDatabase;
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).child("numDays");
+
+        mDatabase.setValue(days).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(SavedAttractionList.this, "Saved new Route Days.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     //REMOVE ATTRACTION:
     private void removeAttractionFromDB(Attraction targetAttraction) {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

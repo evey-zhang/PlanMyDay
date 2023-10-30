@@ -55,7 +55,7 @@ public class Register extends AppCompatActivity {
         Attraction dummyAttraction = new Attraction("dummy", "dummy" , "dummy", "dummy", "dummy", "dummy", "dummy", "dummy");
         myAttractions.add(dummyAttraction);
 
-        User newUser = new User(email, password, myAttractions);
+        User newUser = new User(email, password, myAttractions, 1);
         DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
