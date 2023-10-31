@@ -10,12 +10,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
-public class RouteMap extends AppCompatActivity implements OnMapReadyCallback{
+public class PlanPage extends AppCompatActivity implements OnMapReadyCallback{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_route_map);
+        setContentView(R.layout.activity_plan_page);
 
         //setup map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps);
