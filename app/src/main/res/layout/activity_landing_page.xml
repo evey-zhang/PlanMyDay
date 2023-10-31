@@ -155,7 +155,7 @@
             android:layout_below="@id/attraction"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:text="Attraction List" />
+            android:text="Click to View" />
 
         <TextView
             android:id="@+id/savedAttractionsText"
@@ -253,7 +253,7 @@
             android:layout_below="@id/savedAttraction"
             android:layout_centerHorizontal = "true"
             android:layout_marginTop="5dp"
-            android:text="Saved Attractions " />
+            android:text="Click to View " />
 
 
 
