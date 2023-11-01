@@ -101,8 +101,8 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
                         .build();
 
                 // Use the Google Maps Directions API to fetch route information
-                String origin ="Hollywood Blvd, Los Angeles, CA 90028, USA";
-                String destination = "2800 E Observatory Rd, Los Angeles, CA 90027, USA";
+                String origin ="Hollywood Blvd, Los Angeles, CA, 90028, USA";
+                String destination = "2800 E Observatory Rd, Los Angeles, CA, 90027, USA";
                 List<DirectionsApiRequest.Waypoint> waypointArr = new ArrayList<>();
                 String waypointsStr = "";
 
@@ -159,8 +159,16 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
                         public void onClick(View view){
 
                             // Create a URI for the Google Maps app with the route
-                            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + origin + "&d=" + destination + "&waypoints=" + finalWaypointsStr);
 
+                            String encodedOrigin = Uri.encode(origin);
+                            String encodedDestination = Uri.encode(destination);
+                            Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1" + "&origin=" + origin + "&destination=" + destination+ "&travelmode=driving");
+
+//                            Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1" + "&origin=" + encodedOrigin + "&destination=" + encodedDestination + "&waypoints=" + finalWaypointsStr + "&travelmode=driving");
+
+//                            Uri gmmIntentUri = Uri.parse("google.navigation:&saddr=" + origin + "&q=" + destination + "&waypoints=" + finalWaypointsStr);
+                            System.out.println("this is the origin" + origin);
+                            System.out.println("this is the URI" + gmmIntentUri);
                             // Create an Intent to launch the Google Maps app
                             Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                             mapIntent.setPackage("com.google.android.apps.maps"); // Specify the Google Maps app
