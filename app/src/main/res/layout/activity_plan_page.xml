@@ -6,14 +6,102 @@
     android:layout_height="match_parent"
     tools:context=".UserApplicationLayer.PlanPage">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/maps"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf = "parent"/>
+	<RelativeLayout
+		android:id="@+id/plan_page"
+		android:layout_width="0dp"
+		android:layout_height="0dp"
+		android:clipToOutline="true"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		android:background="#FFEDD2"
+		app:layout_constraintVertical_bias="0.0">
+
+		<TextView
+			android:id="@+id/day"
+			android:text="Day 1"
+			android:layout_width="159dp"
+			android:layout_height="25dp"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentTop="true"
+			android:layout_marginLeft="45dp"
+			android:layout_marginTop="70dp"
+			android:gravity="top"
+			android:textColor="#000000"
+			android:textSize="15sp"
+			android:textStyle="bold" />
+
+		<View
+			android:layout_width="72dp"
+			android:layout_height="3dp"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentTop="true"
+			android:layout_marginLeft="45dp"
+			android:layout_marginTop="95dp"
+			android:background="@drawable/line_3"
+			android:textColor="#000000"
+			android:textSize="12sp" />
+
+		<TextView
+			android:layout_width="159dp"
+			android:layout_height="25dp"
+			android:layout_alignParentLeft="true"
+			android:layout_marginLeft="49dp"
+			android:layout_alignParentTop="true"
+			android:layout_marginTop="125dp"
+			android:text="Attractions"
+			android:textSize="12sp"
+			android:textColor="#000000"
+			android:gravity="top"
+			android:textStyle="bold"
+			/>
+
+<!--		<RelativeLayout-->
+<!--			android:id="@+id/cell_collection_view"-->
+<!--			android:layout_width="340dp"-->
+<!--			android:layout_height="360dp"-->
+<!--			android:layout_centerHorizontal="true"-->
+<!--			android:layout_marginTop="170dp"-->
+<!--			>-->
+
+<!--			<androidx.recyclerview.widget.RecyclerView-->
+<!--				android:id="@+id/recycleView"-->
+<!--				android:layout_width="match_parent"-->
+<!--				android:layout_height="match_parent" />-->
+
+<!--		</RelativeLayout>-->
+
+		<androidx.viewpager2.widget.ViewPager2
+			android:id="@+id/viewPager"
+			android:layout_width="340dp"
+			android:layout_height="360dp"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="170dp">
+
+
+		</androidx.viewpager2.widget.ViewPager2>
+
+		<Button
+			android:id="@+id/buttonLeft"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="318dp"
+			android:text="L"
+			/>
+
+		<Button
+			android:id="@+id/buttonRight"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="318dp"
+			android:layout_marginTop="318dp"
+			android:layout_marginEnd="318dp"
+			android:layout_marginBottom="318dp"
+			android:text="R" />
+
+
+	</RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

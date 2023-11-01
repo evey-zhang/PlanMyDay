@@ -1,32 +1,41 @@
 package com.example.firebaseconnector.UserApplicationLayer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.firebaseconnector.R;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 
-public class PlanPage extends AppCompatActivity implements OnMapReadyCallback{
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_plan_page);
+public class PlanPage extends AppCompatActivity {
 
-        //setup map
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps);
+	private ViewPager2 viewPager;
+	private Button buttonLeft, buttonRight;
 
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(this);
-        }
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_plan_page);
 
-    @Override // triggered to add contents to the map
-    public void onMapReady(@NonNull GoogleMap googleMap) {
+		viewPager = findViewById(R.id.viewPager);
+		buttonLeft = findViewById(R.id.buttonLeft);
+		buttonRight = findViewById(R.id.buttonRight);
 
-    }
+		viewPager.setAdapter(new PagerAdapter(this));
+
+		viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+			@Override
+			public void onPageSelected(int position) {
+				buttonLeft.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+				buttonRight.setVisibility(position == 2 ? View.GONE : View.VISIBLE);
+			}
+		});
+
+		buttonLeft.setOnClickListener(v -> viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true));
+		buttonRight.setOnClickListener(v -> viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true));
+	}
 }

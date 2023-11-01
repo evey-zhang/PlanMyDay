@@ -44,6 +44,9 @@
         <activity
             android:name=".UserApplicationLayer.Register"
             android:exported="false" />
+		<activity
+			android:name=".UserApplicationLayer.PlanPage"
+			android:exported="false" />
         <activity
             android:name=".UserApplicationLayer.Login"
             android:exported="true"
