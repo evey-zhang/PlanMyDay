@@ -24,7 +24,7 @@ public class PlanPageAdapter extends RecyclerView.Adapter<PlanPageAdapter.ViewHo
 	@Override
 	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View view = LayoutInflater.from(parent.getContext())
-				.inflate(R.layout.plan_day_layout, parent, false);
+				.inflate(R.layout.activity_attraction_list_cell, parent, false);
 		return new ViewHolder(view);
 	}
 
@@ -43,7 +43,7 @@ public class PlanPageAdapter extends RecyclerView.Adapter<PlanPageAdapter.ViewHo
 
 		ViewHolder(View view) {
 			super(view);
-			textView = view.findViewById(R.id.textView);
+			textView = view.findViewById(R.id.cell_name);
 		}
 	}
 }

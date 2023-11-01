@@ -40,6 +40,18 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
+		//1) NAVIGATE TO SAVED ATTRACTION LIST PAGE
+		Button planButton = findViewById(R.id.planButton);
+		//Clicked "SAVED ATTRACTIONS", go to view Attraction list view
+		planButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent intent = new Intent(getApplicationContext(), PlanPage.class);
+				startActivity(intent);
+				finish();
+			}
+		});
+
     }
 
 }

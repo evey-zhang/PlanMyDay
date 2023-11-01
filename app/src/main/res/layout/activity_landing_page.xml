@@ -46,7 +46,16 @@
             android:textStyle="bold"
             />
 
-        <View
+		<Button
+			android:id="@+id/planButton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="265dp"
+			android:layout_marginTop="20dp"
+			android:backgroundTint="#F28F8F"
+			android:text="View Plan" />
+
+		<View
             android:id="@+id/line_3"
             android:layout_width="62dp"
             android:layout_height="3dp"
@@ -256,9 +265,7 @@
             android:text="Click to View " />
 
 
-
-
-    </RelativeLayout>
+	</RelativeLayout>
 
 
 
