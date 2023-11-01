@@ -14,12 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FireBaseConnector"
         tools:targetApi="31">
+        <activity
+            android:name=".UserApplicationLayer.RouteCreator"
+            android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCvotiIp3SAZraNEeZi8R2I5-hW6vAZiuk" />
-        <activity
-            android:name=".UserApplicationLayer.RouteMap"
-            android:exported="false" />
+            android:value="AIzaSyAbn_NBmNZ-SNkxstD7Amh2v6x1NXdgnHs" />
+
         <activity
             android:name=".UserApplicationLayer.AttractionDetails"
             android:exported="false"

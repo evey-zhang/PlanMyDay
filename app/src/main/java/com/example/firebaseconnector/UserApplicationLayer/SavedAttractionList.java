@@ -121,7 +121,7 @@ public class SavedAttractionList extends AppCompatActivity {
                         Toast.makeText(SavedAttractionList.this, "Days cannot be less than 1", Toast.LENGTH_SHORT).show();
                     }
                     //SET INTENT TO CREATE ROUTE ACTIVITY
-                    Intent intent = new Intent(getApplicationContext(), RouteMap.class);
+                    Intent intent = new Intent(getApplicationContext(), RouteCreator.class);
                     startActivity(intent);
                     finish();
 
