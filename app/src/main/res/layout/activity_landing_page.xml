@@ -26,8 +26,8 @@
             android:layout_height="386.14dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="-116dp"
+            android:layout_marginLeft="-19dp"
+            android:layout_marginTop="-29dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ellipse" />
 
@@ -46,16 +46,16 @@
             android:textStyle="bold"
             />
 
-		<Button
-			android:id="@+id/planButton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="265dp"
-			android:layout_marginTop="20dp"
-			android:backgroundTint="#F28F8F"
-			android:text="View Plan" />
+        <Button
+            android:id="@+id/planButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#F28F8F"
+            android:text="View Plan" />
 
-		<View
+        <View
             android:id="@+id/line_3"
             android:layout_width="62dp"
             android:layout_height="3dp"
@@ -264,8 +264,17 @@
             android:layout_marginTop="5dp"
             android:text="Click to View " />
 
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginRight="22dp"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@android:drawable/ic_menu_set_as" />
 
-	</RelativeLayout>
+
+    </RelativeLayout>
 
 
 

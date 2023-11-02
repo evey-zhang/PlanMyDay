@@ -47,17 +47,21 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             //move onto next step of the app
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(), Login.class);
+            startActivity(intent);
+            finish();
         }
-        button.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                startActivity(intent);
-                finish();
-            }
-
-        });
+//        button.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                FirebaseAuth.getInstance().signOut();
+//                Intent intent = new Intent(getApplicationContext(), Login.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//
+//        });
 
 ;
 

@@ -27,9 +27,8 @@ public class Login extends AppCompatActivity {
     EditText editTextEmail, editTextPassword;
     Button buttonLogin;
     FirebaseAuth mAuth;
-    TextView textView;
-
-
+    TextView registerNow;
+    TextView forgotPassword;
 
 
     @Override
@@ -52,19 +51,70 @@ public class Login extends AppCompatActivity {
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         buttonLogin = findViewById(R.id.loginButton);
-        textView = findViewById(R.id.registerNow);
+        registerNow = findViewById(R.id.registerNow);
+        forgotPassword = findViewById(R.id.forgotpsswd);
+
+
+
 
 
 
         //Clicked "Click to Register", use REGISTER ACTIVITY
-        textView.setOnClickListener(new View.OnClickListener(){
+        registerNow.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                System.out.println("clicked");
                 Intent intent = new Intent(getApplicationContext(), Register.class);
                 startActivity(intent);
                 finish();
             }
         });
+        //FORGOT password "clicked"
+        forgotPassword.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                setContentView(R.layout.activity_forgot_password);
+                Button resetButton = findViewById(R.id.resetButton);
+                EditText editTextEmail = findViewById(R.id.forgotEmail);
+                TextView returnHome = findViewById(R.id.backToSignin);
+                String email = editTextEmail.getText().toString();
+
+                //clicked RESET BUTTON
+                resetButton.setOnClickListener(new View.OnClickListener(){
+
+                    @Override
+                    public void onClick(View view) {
+                        // In your button click listener or where you initiate the password reset process
+                        mAuth.sendPasswordResetEmail(email)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            // Password reset email sent successfully
+                                            Toast.makeText(Login.this, "Password reset email sent.", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            // Password reset email failed to send
+                                            Toast.makeText(Login.this, "Failed to send password reset email.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                    }
+                });
+                returnHome.setOnClickListener(new View.OnClickListener(){
+
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), Login.class);
+                        startActivity(intent);
+                        finish();
+
+
+                    }
+                });
+
+            }
+        });
+
 
         buttonLogin.setOnClickListener((new View.OnClickListener() {
             @Override
@@ -98,7 +148,6 @@ public class Login extends AppCompatActivity {
                                     // If Login fails, display a message to the user.
                                     Toast.makeText(Login.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
-
                                 }
                             }
                         });
