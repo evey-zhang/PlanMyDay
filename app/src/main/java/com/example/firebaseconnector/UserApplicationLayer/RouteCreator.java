@@ -57,7 +57,7 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
     }
     @Override // triggered to add contents to the map
     public void onMapReady(@NonNull GoogleMap googleMap) {
-       final List<String> addressesToVisit = new ArrayList<>();
+		final List<String> addressesToVisit = new ArrayList<>();
         Boolean isDriving = getIntent().getBooleanExtra("IS_DRIVE_MODE", true);
         int dayNumber = getIntent().getIntExtra("DAY_NUMBER", 0);
 

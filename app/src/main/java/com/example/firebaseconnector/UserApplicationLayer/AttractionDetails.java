@@ -27,6 +27,8 @@ public class AttractionDetails extends AppCompatActivity {
 	FirebaseAuth mAuth = FirebaseAuth.getInstance();
 	FirebaseUser currentUser = mAuth.getCurrentUser();
 
+	String uid;
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +79,7 @@ public class AttractionDetails extends AppCompatActivity {
 	}
 
 	private void setUpDatabaseReferenceForUser() {
-		String uid = "";
+		uid = "";
 		if (currentUser != null) {
 			uid = currentUser.getUid();
 			// Now, 'uid' contains the UID of the current user
@@ -86,30 +88,39 @@ public class AttractionDetails extends AppCompatActivity {
 			// There is no signed-in user
 			System.out.println("No signed-in user");
 		}
-		db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("attractionList");
 	}
 
 	// save attraction
 	private void saveAttractionToDB(Attraction targetAttraction) {
-		db.addListenerForSingleValueEvent(new ValueEventListener() {
+		db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+		DatabaseReference attractionListRef = db.child("attractionList");
+
+		attractionListRef.addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override
 			public void onDataChange(DataSnapshot dataSnapshot) {
-				boolean exists = false;
-				for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-					Attraction existingAttraction = snapshot.getValue(Attraction.class);
-					System.out.println(existingAttraction.getId());
-					System.out.println(targetAttraction.getId());
-					if (existingAttraction.getId() != null && existingAttraction.getId().equals(targetAttraction.getId())) {
-						exists = true;
-						break;
-					}
-				}
-				if (exists) {
-					Toast.makeText(AttractionDetails.this, "Attraction already exists!", Toast.LENGTH_SHORT).show();
+				if (!dataSnapshot.exists()) {
+					// If the attractionList doesn't exist, create it and add the new attraction
+					dataSnapshot.getRef().child(targetAttraction.getId()).setValue(targetAttraction)
+							.addOnSuccessListener(aVoid -> Toast.makeText(AttractionDetails.this, "Attraction list created and attraction added successfully!", Toast.LENGTH_SHORT).show())
+							.addOnFailureListener(e -> Toast.makeText(AttractionDetails.this, "Failed to create attraction list and add attraction.", Toast.LENGTH_SHORT).show());
 				} else {
-					db.push().setValue(targetAttraction)
-							.addOnSuccessListener(aVoid -> Toast.makeText(AttractionDetails.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show())
-							.addOnFailureListener(e -> Toast.makeText(AttractionDetails.this, "Failed to add attraction.", Toast.LENGTH_SHORT).show());
+					// If the attractionList exists, check if the attraction already exists within it
+					boolean exists = false;
+					for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+						Attraction existingAttraction = snapshot.getValue(Attraction.class);
+						if (existingAttraction.getId() != null && existingAttraction.getId().equals(targetAttraction.getId())) {
+							exists = true;
+							break;
+						}
+					}
+					if (exists) {
+						Toast.makeText(AttractionDetails.this, "Attraction already exists!", Toast.LENGTH_SHORT).show();
+					} else {
+						// If the attraction doesn't exist, add it to the attractionList
+						dataSnapshot.getRef().push().setValue(targetAttraction)
+								.addOnSuccessListener(aVoid -> Toast.makeText(AttractionDetails.this, "Attraction added successfully!", Toast.LENGTH_SHORT).show())
+								.addOnFailureListener(e -> Toast.makeText(AttractionDetails.this, "Failed to add attraction.", Toast.LENGTH_SHORT).show());
+					}
 				}
 			}
 
@@ -124,6 +135,7 @@ public class AttractionDetails extends AppCompatActivity {
 
 	//remove attraction
 	private void removeAttractionFromDB(Attraction targetAttraction) {
+		db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("attractionList");
 		db.addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override
 			public void onDataChange(DataSnapshot dataSnapshot) {

@@ -132,9 +132,9 @@ public class SavedAttractionList extends AppCompatActivity {
 					generateTripPlan(attractionList, intNumberDays);
                     //SET INTENT TO CREATE ROUTE ACTIVITY
 
-//                    Intent intent = new Intent(getApplicationContext(), RouteCreator.class);
-//                    startActivity(intent);
-//                    finish();
+                    Intent intent = new Intent(getApplicationContext(), PlanPage.class);
+                    startActivity(intent);
+                    finish();
 
                 } catch (NumberFormatException e) {
                     // not an integer!
