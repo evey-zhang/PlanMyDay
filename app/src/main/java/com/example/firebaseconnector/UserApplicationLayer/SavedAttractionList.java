@@ -149,7 +149,7 @@ public class SavedAttractionList extends AppCompatActivity {
 
 		TripPlanner tripPlanner = new TripPlanner(savedAttractions, numDays);
 		ArrayList<ArrayList<Attraction>> tripPlan = tripPlanner.generateTrip();
-
+        System.out.println("Trip: " + tripPlan);
 		System.out.println("HELLOOOOOO");
 		for (ArrayList<Attraction> a: tripPlan) {
 			for (Attraction b: a) {
