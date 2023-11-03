@@ -1,5 +1,7 @@
 package com.example.firebaseconnector.UserApplicationLayer;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.firebaseconnector.R;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,9 +28,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Attr;
+
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class SavedAttractionList extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -120,7 +126,9 @@ public class SavedAttractionList extends AppCompatActivity {
                     else{
                         Toast.makeText(SavedAttractionList.this, "Days cannot be less than 1", Toast.LENGTH_SHORT).show();
                     }
+//					uploadDummyPlanToDB();
                     //SET INTENT TO CREATE ROUTE ACTIVITY
+
                     Intent intent = new Intent(getApplicationContext(), RouteCreator.class);
                     startActivity(intent);
                     finish();
@@ -129,15 +137,75 @@ public class SavedAttractionList extends AppCompatActivity {
                     // not an integer!
                     Toast.makeText(SavedAttractionList.this, "Please Enter a valid number of at least 1", Toast.LENGTH_SHORT).show();
                 }
-
-
-
-
-
             }
         });
-
     }
+
+	private void uploadDummyPlanToDB() {
+		ArrayList<ArrayList<Attraction>> tripPlan = new ArrayList<>();
+		int cnt = 0;
+		ArrayList<Attraction> dayPlan = new ArrayList<>();
+		for (int i = 0; i < attractionList.size(); i++) {
+			if (cnt == 2) {
+				cnt = 0;
+				ArrayList<Attraction> copy = (ArrayList<Attraction>) dayPlan.clone();
+				tripPlan.add(copy);
+				dayPlan.clear();
+			}
+			dayPlan.add(attractionList.get(i));
+			cnt++;
+		}
+		tripPlan.add(dayPlan);
+
+		System.out.println("HELLOOOOOO");
+		for (ArrayList<Attraction> a: tripPlan) {
+			for (Attraction b: a) {
+				System.out.println(b.getName());
+			}
+			System.out.println("----");
+		}
+
+		ArrayList<ArrayList<Attraction>> attractionsList = new ArrayList<>();
+
+		List<List<Map<String, Object>>> firestoreData = new ArrayList<>();
+
+		for (ArrayList<Attraction> sublist : attractionsList) {
+			List<Map<String, Object>> subFirestoreList = new ArrayList<>();
+			for (Attraction attraction : sublist) {
+				subFirestoreList.add(attraction.toMap());
+			}
+			firestoreData.add(subFirestoreList);
+		}
+
+
+		String uid = "";
+		if (currentUser != null) {
+			uid = currentUser.getUid();
+			// Now, 'uid' contains the UID of the current user
+			System.out.println("Current user's UID: " + uid);
+		} else {
+			// There is no signed-in user
+			System.out.println("No signed-in user");
+		}
+
+		// Set the value of "tripPlan" under the user's node
+		databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+		databaseReference.child("tripPlan").setValue(tripPlan)
+				.addOnSuccessListener(new OnSuccessListener<Void>() {
+					@Override
+					public void onSuccess(Void aVoid) {
+						// Write was successful!
+						Log.d(TAG, "tripPlan successfully written!");
+					}
+				})
+				.addOnFailureListener(new OnFailureListener() {
+					@Override
+					public void onFailure(@NonNull Exception e) {
+						// Write failed
+						Log.w(TAG, "Error writing tripPlan", e);
+					}
+				});
+	}
 
     //Enter Number Of Days
     private void setDays(int days) {

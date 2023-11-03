@@ -19,19 +19,28 @@ import java.util.List;
 
 public class PagerAdapter extends FragmentStateAdapter {
 
-	public PagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+	private int pageCount = 0;
+	private ArrayList<ArrayList<Attraction>> tripPlan;
+
+	public PagerAdapter(@NonNull FragmentActivity fragmentActivity, int initialPageCount, ArrayList<ArrayList<Attraction>> tripPlan) {
 		super(fragmentActivity);
+		this.pageCount = initialPageCount;
+		this.tripPlan = tripPlan;
 	}
 
 	@Override
 	public Fragment createFragment(int position) {
 		// Return a new fragment instance with a list for each position
-		return PageFragment.newInstance(position);
+		return PageFragment.newInstance(position, tripPlan.get(position));
 	}
 
 	@Override
 	public int getItemCount() {
-		return 3; // Three pages
+		return pageCount;
+	}
+
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
 	}
 }
 

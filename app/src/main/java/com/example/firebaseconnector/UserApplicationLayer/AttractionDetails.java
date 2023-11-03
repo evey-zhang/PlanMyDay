@@ -99,7 +99,7 @@ public class AttractionDetails extends AppCompatActivity {
 					Attraction existingAttraction = snapshot.getValue(Attraction.class);
 					System.out.println(existingAttraction.getId());
 					System.out.println(targetAttraction.getId());
-					if (existingAttraction != null && existingAttraction.getId().equals(targetAttraction.getId())) {
+					if (existingAttraction.getId() != null && existingAttraction.getId().equals(targetAttraction.getId())) {
 						exists = true;
 						break;
 					}
@@ -130,7 +130,7 @@ public class AttractionDetails extends AppCompatActivity {
 				String keyToRemove = null;
 				for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 					Attraction existingAttraction = snapshot.getValue(Attraction.class);
-					if (existingAttraction != null && existingAttraction.getId().equals(targetAttraction.getId())) {
+					if (existingAttraction.getId() != null && existingAttraction.getId().equals(targetAttraction.getId())) {
 						keyToRemove = snapshot.getKey();
 						break;
 					}

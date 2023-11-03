@@ -16,13 +16,16 @@ import java.util.List;
 public class PageFragment extends Fragment {
 
 	private static final String ARG_PAGE_NUMBER = "page_number";
+	static int numPages = 0;
 
-	public PageFragment() {
-		// Required empty public constructor
+	private ArrayList<Attraction> dayPlan;
+
+	public PageFragment(ArrayList<Attraction> dayPlan) {
+		this.dayPlan = dayPlan;
 	}
 
-	public static PageFragment newInstance(int pageNumber) {
-		PageFragment fragment = new PageFragment();
+	public static PageFragment newInstance(int pageNumber, ArrayList<Attraction> dayPlan) {
+		PageFragment fragment = new PageFragment(dayPlan);
 		Bundle args = new Bundle();
 		args.putInt(ARG_PAGE_NUMBER, pageNumber);
 		fragment.setArguments(args);
@@ -34,16 +37,11 @@ public class PageFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_page, container, false);
 		RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 		recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-		recyclerView.setAdapter(new PlanPageAdapter(getDataForPage(getArguments().getInt(ARG_PAGE_NUMBER))));
+		recyclerView.setAdapter(new PlanPageAdapter(getDataForPage()));
 		return view;
 	}
 
-	private List<String> getDataForPage(int pageNumber) {
-		// Sample data for demonstration
-		List<String> data = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
-			data.add("Item " + (i + 1) + " of Page " + (pageNumber + 1));
-		}
-		return data;
+	private ArrayList<Attraction> getDataForPage() {
+		return dayPlan;
 	}
 }

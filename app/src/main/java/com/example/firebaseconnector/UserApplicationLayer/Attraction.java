@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Attraction implements Parcelable {
 	private String id;
 	private String name;
@@ -138,5 +141,18 @@ public class Attraction implements Parcelable {
 		parcel.writeString(openTime);
 		parcel.writeString(closeTime);
 		parcel.writeString(description);
+	}
+
+	public Map<String, Object> toMap() {
+		Map<String, Object> result = new HashMap<>();
+		result.put("id", id);
+		result.put("name", name);
+		result.put("address", address);
+		result.put("longitude", longitude);
+		result.put("latitude", latitude);
+		result.put("openTime", openTime);
+		result.put("closeTime", closeTime);
+		result.put("description", description);
+		return result;
 	}
 }

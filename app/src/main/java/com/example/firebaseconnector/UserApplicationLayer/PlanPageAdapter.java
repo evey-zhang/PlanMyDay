@@ -12,13 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.firebaseconnector.R;
 
 
+import org.w3c.dom.Attr;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlanPageAdapter extends RecyclerView.Adapter<PlanPageAdapter.ViewHolder> {
-	private final List<String> mData;
+	private final ArrayList<Attraction> dayPlan;
 
-	public PlanPageAdapter(List<String> data) {
-		this.mData = data;
+	public PlanPageAdapter(ArrayList<Attraction> data) {
+		this.dayPlan = data;
 	}
 
 	@Override
@@ -30,20 +33,27 @@ public class PlanPageAdapter extends RecyclerView.Adapter<PlanPageAdapter.ViewHo
 
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
-		holder.textView.setText(mData.get(position));
+		Attraction attraction = dayPlan.get(position);
+		holder.name.setText(attraction.getName());
+		holder.address.setText(attraction.getAddress());
+
+		String operatingTimeString = attraction.getOpenTime() + " - " + attraction.getCloseTime();
+		holder.operatingTime.setText(operatingTimeString);
 	}
 
 	@Override
 	public int getItemCount() {
-		return mData.size();
+		return dayPlan.size();
 	}
 
 	static class ViewHolder extends RecyclerView.ViewHolder {
-		TextView textView;
+		TextView name, operatingTime, address;
 
-		ViewHolder(View view) {
-			super(view);
-			textView = view.findViewById(R.id.cell_name);
+		ViewHolder(View v) {
+			super(v);
+			name = v.findViewById(R.id.cell_name);
+			operatingTime = v.findViewById(R.id.cell_time);
+			address = v.findViewById(R.id.cell_address);
 		}
 	}
 }

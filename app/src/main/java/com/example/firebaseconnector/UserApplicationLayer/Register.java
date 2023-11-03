@@ -2,6 +2,7 @@ package com.example.firebaseconnector.UserApplicationLayer;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.AttrRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -51,11 +52,13 @@ public class Register extends AppCompatActivity {
     //Add new user to database
     private void addUser(String userID, String email, String password) {
 
-        List<Attraction> myAttractions = new ArrayList<>();
+		ArrayList<ArrayList<Attraction>> tripPlan = new ArrayList<>();
+        ArrayList<Attraction> myAttractions = new ArrayList<>();
         Attraction dummyAttraction = new Attraction("dummy", "dummy" , "dummy", "dummy", "dummy", "dummy", "dummy", "dummy");
         myAttractions.add(dummyAttraction);
+		tripPlan.add(myAttractions);
 
-        User newUser = new User(email, password, myAttractions, 1);
+        User newUser = new User(email, password, myAttractions, tripPlan, 1);
         DatabaseReference mDatabase;
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
@@ -66,8 +69,9 @@ public class Register extends AppCompatActivity {
             }
         });
 		mDatabase.child("users").child(userID).child("attractionList").setValue(null);
+		mDatabase.child("users").child(userID).child("tripPlan").setValue(null);
 
-    }
+	}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
