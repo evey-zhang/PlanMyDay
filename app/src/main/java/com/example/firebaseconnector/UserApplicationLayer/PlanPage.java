@@ -106,6 +106,7 @@ public class PlanPage extends AppCompatActivity {
 				for (DataSnapshot snapshotDay : snapshot.getChildren()) {
 					ArrayList<Attraction> dayPlan = new ArrayList<>();
 					for (DataSnapshot snapshotAttraction : snapshotDay.getChildren() ) {
+						System.out.println("ERROR IS HERE" + snapshotAttraction.getValue(Attraction.class).getAddress() );
 						Attraction attraction = snapshotAttraction.getValue(Attraction.class);
 						dayPlan.add(attraction);
 					}
