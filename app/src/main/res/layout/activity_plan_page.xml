@@ -89,12 +89,22 @@
 
 
 		<Button
-			android:id="@+id/SavedAttractionButton"
+			android:id="@+id/carRouteButton"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
+			android:layout_alignParentStart="true"
+			android:layout_marginStart="60dp"
 			android:layout_marginTop="600dp"
-			android:text="Show Route" />
+			android:text="Car Route" />
+
+		<Button
+			android:id="@+id/publicTransportbutton"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentStart="true"
+			android:layout_marginStart="192dp"
+			android:layout_marginTop="600dp"
+			android:text="Public Transport" />
 
 	</RelativeLayout>
 

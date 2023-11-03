@@ -1,6 +1,7 @@
 package com.example.firebaseconnector.UserApplicationLayer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,7 @@ public class PlanPage extends AppCompatActivity {
 	private DatabaseReference db;
 
 	private Button buttonLeft, buttonRight;
+	private int dayNumber = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class PlanPage extends AppCompatActivity {
 			@Override
 			public void onPageSelected(int position) {
 				dayTitle.setText("Day " + (position+1));
+				dayNumber = position + 1;
 //				buttonLeft.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
 //				buttonRight.setVisibility(position == 2 ? View.GONE : View.VISIBLE);
 			}
@@ -60,6 +63,28 @@ public class PlanPage extends AppCompatActivity {
 //
 //		buttonLeft.setOnClickListener(v -> viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true));
 //		buttonRight.setOnClickListener(v -> viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true));
+
+		Button carRouteButton = findViewById(R.id.carRouteButton);
+		carRouteButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent intent = new Intent(getApplicationContext(), RouteCreator.class);
+				intent.putExtra("IS_DRIVE_MODE", true);
+				intent.putExtra("DAY_NUMBER", dayNumber);
+				startActivity(intent);
+				finish();
+			}
+		});
+
+		Button publicTransportbutton = findViewById(R.id.publicTransportbutton);
+		publicTransportbutton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				Intent intent = new Intent(getApplicationContext(), RouteCreator.class);
+				intent.putExtra("IS_DRIVE_MODE", false);
+				intent.putExtra("DAY_NUMBER", dayNumber);
+				startActivity(intent);
+				finish();
+			}
+		});
 
 	}
 
