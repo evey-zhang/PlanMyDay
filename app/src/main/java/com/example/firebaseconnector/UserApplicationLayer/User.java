@@ -10,20 +10,17 @@ public class User {
     // user's saved attractions list
     public ArrayList<Attraction> attractionList;
 
-	public ArrayList<ArrayList<Attraction>> tripPlan;
-
     public int numDays;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String email, String password, ArrayList<Attraction> attractionList, ArrayList<ArrayList<Attraction>> tripPlan, int numDays) {
+    public User(String email, String password, ArrayList<Attraction> attractionList, int numDays) {
         this.password = password;
         this.email = email;
         this.attractionList=attractionList;
         this.numDays = numDays;
-		this.tripPlan = tripPlan;
     }
 }
 

@@ -55,7 +55,7 @@ public class PlanPage extends AppCompatActivity {
 			@Override
 			public void onPageSelected(int position) {
 				dayTitle.setText("Day " + (position+1));
-				dayNumber = position + 1;
+				dayNumber = position ;
 //				buttonLeft.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
 //				buttonRight.setVisibility(position == 2 ? View.GONE : View.VISIBLE);
 			}
