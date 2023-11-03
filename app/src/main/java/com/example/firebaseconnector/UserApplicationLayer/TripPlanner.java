@@ -6,22 +6,26 @@ import java.util.PriorityQueue;
 import java.util.Collections;
 
 public class TripPlanner {
-    private User user;
 
-    public TripPlanner(User u) {
-        user = u;
+	private ArrayList<Attraction> savedAttractions;
+	private int numDays;
+
+    public TripPlanner(ArrayList<Attraction> savedAttractions, int numDays) {
+        this.savedAttractions = savedAttractions;
+		this.numDays = numDays;
     }
 
     public ArrayList<ArrayList<Attraction>> generateTrip() {
         ArrayList<ArrayList<Attraction>> trip = new ArrayList<>();
-        for (int i = 0; i < user.numDays; i++) {
+        for (int i = 0; i < numDays; i++) {
             ArrayList<Attraction> day = new ArrayList<>();
-            for (int j = i; j < user.attractionList.size(); j += user.numDays) {
-                day.add(user.attractionList.get(j));
+            for (int j = i; j < savedAttractions.size(); j += numDays) {
+                day.add(savedAttractions.get(j));
             }
             sortByCloseTime(day);
             trip.add(day);
         }
+
         return trip;
     }
 

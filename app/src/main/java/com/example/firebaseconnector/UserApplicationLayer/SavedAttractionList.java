@@ -37,7 +37,6 @@ import java.util.Map;
 
 public class SavedAttractionList extends AppCompatActivity {
     RecyclerView recyclerView;
-    ArrayList<Attraction> attractionList;
     DatabaseReference databaseReference;
     MyAdapter adapter;
 
@@ -56,12 +55,15 @@ public class SavedAttractionList extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_attraction_list);
+
+		databaseReference = FirebaseDatabase.getInstance().getReference("attractions");
+		ArrayList<Attraction> attractionList = new ArrayList<>();
+
         recyclerView = findViewById(R.id.recycleView);
-        databaseReference = FirebaseDatabase.getInstance().getReference("attractions");
-        attractionList = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter(this,attractionList);
         recyclerView.setAdapter(adapter);
+
         String uid = "";
         if (currentUser != null) {
             uid = currentUser.getUid();
@@ -127,11 +129,12 @@ public class SavedAttractionList extends AppCompatActivity {
                         Toast.makeText(SavedAttractionList.this, "Days cannot be less than 1", Toast.LENGTH_SHORT).show();
                     }
 //					uploadDummyPlanToDB();
+					generateTripPlan(attractionList, intNumberDays);
                     //SET INTENT TO CREATE ROUTE ACTIVITY
 
-                    Intent intent = new Intent(getApplicationContext(), RouteCreator.class);
-                    startActivity(intent);
-                    finish();
+//                    Intent intent = new Intent(getApplicationContext(), RouteCreator.class);
+//                    startActivity(intent);
+//                    finish();
 
                 } catch (NumberFormatException e) {
                     // not an integer!
@@ -141,7 +144,51 @@ public class SavedAttractionList extends AppCompatActivity {
         });
     }
 
-	private void uploadDummyPlanToDB() {
+	private void generateTripPlan(ArrayList<Attraction> savedAttractions, int numDays) {
+		System.out.println("BITCHHHHH");
+
+		TripPlanner tripPlanner = new TripPlanner(savedAttractions, numDays);
+		ArrayList<ArrayList<Attraction>> tripPlan = tripPlanner.generateTrip();
+
+		System.out.println("HELLOOOOOO");
+		for (ArrayList<Attraction> a: tripPlan) {
+			for (Attraction b: a) {
+				System.out.println(b.getName());
+			}
+			System.out.println("----");
+		}
+
+		// Upload plan to firestore
+		String uid = "";
+		if (currentUser != null) {
+			uid = currentUser.getUid();
+			// Now, 'uid' contains the UID of the current user
+			System.out.println("Current user's UID: " + uid);
+		} else {
+			// There is no signed-in user
+			System.out.println("No signed-in user");
+		}
+
+		// Set the value of "tripPlan" under the user's node
+		databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+		databaseReference.child("tripPlan").setValue(tripPlan)
+				.addOnSuccessListener(new OnSuccessListener<Void>() {
+					@Override
+					public void onSuccess(Void aVoid) {
+						// Write was successful!
+						Log.d(TAG, "tripPlan successfully written!");
+					}
+				})
+				.addOnFailureListener(new OnFailureListener() {
+					@Override
+					public void onFailure(@NonNull Exception e) {
+						// Write failed
+						Log.w(TAG, "Error writing tripPlan", e);
+					}
+				});
+	}
+
+	private void uploadDummyPlanToDB(ArrayList<Attraction> attractionList) {
 		ArrayList<ArrayList<Attraction>> tripPlan = new ArrayList<>();
 		int cnt = 0;
 		ArrayList<Attraction> dayPlan = new ArrayList<>();
@@ -157,25 +204,13 @@ public class SavedAttractionList extends AppCompatActivity {
 		}
 		tripPlan.add(dayPlan);
 
-		System.out.println("HELLOOOOOO");
-		for (ArrayList<Attraction> a: tripPlan) {
-			for (Attraction b: a) {
-				System.out.println(b.getName());
-			}
-			System.out.println("----");
-		}
-
-		ArrayList<ArrayList<Attraction>> attractionsList = new ArrayList<>();
-
-		List<List<Map<String, Object>>> firestoreData = new ArrayList<>();
-
-		for (ArrayList<Attraction> sublist : attractionsList) {
-			List<Map<String, Object>> subFirestoreList = new ArrayList<>();
-			for (Attraction attraction : sublist) {
-				subFirestoreList.add(attraction.toMap());
-			}
-			firestoreData.add(subFirestoreList);
-		}
+//		System.out.println("HELLOOOOOO");
+//		for (ArrayList<Attraction> a: tripPlan) {
+//			for (Attraction b: a) {
+//				System.out.println(b.getName());
+//			}
+//			System.out.println("----");
+//		}
 
 
 		String uid = "";
