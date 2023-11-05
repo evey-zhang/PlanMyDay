@@ -29,6 +29,15 @@ public class AttractionDetails extends AppCompatActivity {
 
 	String uid;
 
+	public void onBackPressed() {
+		super.onBackPressed();
+		//INPUT startactivity to lead back to home page
+//        startActivity;
+		Intent intent = new Intent(getApplicationContext(), AttractionList.class);
+		startActivity(intent);
+		finish();
+	}
+
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

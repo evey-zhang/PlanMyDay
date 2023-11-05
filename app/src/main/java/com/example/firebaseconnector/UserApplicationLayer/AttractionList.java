@@ -29,6 +29,15 @@ public class AttractionList extends AppCompatActivity {
 	private ArrayList<Attraction> attractionList;
 	private DatabaseReference db;
 
+	public void onBackPressed() {
+		super.onBackPressed();
+		//INPUT startactivity to lead back to home page
+//        startActivity;
+		Intent intent = new Intent(getApplicationContext(), LandingPage.class);
+		startActivity(intent);
+		finish();
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
