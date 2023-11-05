@@ -184,9 +184,14 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
                             public void onClick(View view){
 
                                 // Create a URI for the Google Maps app with the route
+                                Uri gmmIntentUri = null;
+                                if (isDriveMode){
+                                    gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1" + "&origin=" + origin + "&destination=" + destination+ "&waypoints=" + finalWaypointsStr + "&travelmode=driving");
+                                }
+                                else{
+                                    gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1" + "&origin=" + origin + "&destination=" + addressesToVisit.get(0) + "&travelmode=transit");
 
-
-                                Uri gmmIntentUri = Uri.parse("https://www.google.com/maps/dir/?api=1" + "&origin=" + origin + "&destination=" + destination+ "&waypoints=" + finalWaypointsStr + "&travelmode=driving");
+                                }
 
 
                                 // Create an Intent to launch the Google Maps app

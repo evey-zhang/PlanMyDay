@@ -38,6 +38,16 @@ public class PlanPage extends AppCompatActivity {
 	private int dayNumber = 0;
 
 	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		//INPUT startactivity to lead back to home page
+//        startActivity;
+		Intent intent = new Intent(getApplicationContext(), LandingPage.class);
+		startActivity(intent);
+		finish();
+	}
+
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_plan_page);

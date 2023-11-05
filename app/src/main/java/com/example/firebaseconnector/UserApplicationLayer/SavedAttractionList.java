@@ -48,6 +48,9 @@ public class SavedAttractionList extends AppCompatActivity {
         super.onBackPressed();
         //INPUT startactivity to lead back to home page
 //        startActivity;
+        Intent intent = new Intent(getApplicationContext(), LandingPage.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
