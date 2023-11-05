@@ -47,6 +47,9 @@ public class PlanPage extends AppCompatActivity {
 		finish();
 	}
 
+
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

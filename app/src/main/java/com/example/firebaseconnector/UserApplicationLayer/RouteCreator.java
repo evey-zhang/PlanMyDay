@@ -41,6 +41,15 @@ import java.util.List;
 
 public class RouteCreator extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        //INPUT startactivity to lead back to home page
+//        startActivity;
+        Intent intent = new Intent(getApplicationContext(), PlanPage.class);
+        startActivity(intent);
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
