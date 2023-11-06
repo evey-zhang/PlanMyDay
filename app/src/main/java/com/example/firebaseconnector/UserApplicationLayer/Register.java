@@ -119,6 +119,11 @@ public class Register extends AppCompatActivity {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     String userID = user.getUid();
                                     addUser(userID, email,password);
+
+									// Direct to landing page
+									Intent intent = new Intent(getApplicationContext(), LandingPage.class);
+									startActivity(intent);
+									finish();
                                 } else {
                                     // If Register fails, display a message to the user. Note: password must be at least 6 characters
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
