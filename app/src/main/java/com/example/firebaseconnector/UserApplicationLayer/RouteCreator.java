@@ -106,7 +106,7 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
                 }
                 System.out.println("these are the addresses: " + addressesToVisit);
 
-                if (addressesToVisit.size() > 1){
+                if (addressesToVisit.size() > 0){
                     // Pass the data back using the callback
                     callback.onDataReceived(addressesToVisit);
 
@@ -122,12 +122,15 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
                     List<DirectionsApiRequest.Waypoint> waypointArr = new ArrayList<>();
                     String waypointsStr = "";
 
+                    //if waypoints exist
+                    if (addressesToVisit.size()>1){
+                        for (int i = 0; i < addressesToVisit.size() - 1; i++) {
+                            DirectionsApiRequest.Waypoint waypt = new DirectionsApiRequest.Waypoint(addressesToVisit.get(i));
+                            waypointArr.add(waypt);
 
-                    for (int i = 0; i < addressesToVisit.size() - 1; i++) {
-                        DirectionsApiRequest.Waypoint waypt = new DirectionsApiRequest.Waypoint(addressesToVisit.get(i));
-                        waypointArr.add(waypt);
-
+                        }
                     }
+
                     //SET DIRECTIONS RESULT ROUTE
                     try {
                         DirectionsResult result;
