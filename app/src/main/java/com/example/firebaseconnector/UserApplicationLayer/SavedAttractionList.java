@@ -126,6 +126,12 @@ public class SavedAttractionList extends AppCompatActivity {
 
                 String numberDays = (String.valueOf(numDays.getText()));
                 try{//is integer
+
+					if (attractionList.size() == 0) {
+						Toast.makeText(SavedAttractionList.this, "No current Saved Attractions", Toast.LENGTH_SHORT).show();
+						return;
+					}
+
                     int intNumberDays = Integer.parseInt(numberDays);
                     if (intNumberDays > 0){ setDays(intNumberDays);}
                     else{
@@ -148,12 +154,10 @@ public class SavedAttractionList extends AppCompatActivity {
     }
 
 	private void generateTripPlan(ArrayList<Attraction> savedAttractions, int numDays) {
-		System.out.println("BITCHHHHH");
-
 		TripPlanner tripPlanner = new TripPlanner(savedAttractions, numDays);
 		ArrayList<ArrayList<Attraction>> tripPlan = tripPlanner.generateTrip();
         System.out.println("Trip: " + tripPlan);
-		System.out.println("HELLOOOOOO");
+		System.out.println("TRIP PLAN:::::");
 		for (ArrayList<Attraction> a: tripPlan) {
 			for (Attraction b: a) {
 				System.out.println(b.getName());
