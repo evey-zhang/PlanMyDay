@@ -127,7 +127,7 @@ public class Register extends AppCompatActivity {
                                 } else {
                                     // If Register fails, display a message to the user. Note: password must be at least 6 characters
                                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(Register.this, "Authentication failed." + task.getException(),
+                                    Toast.makeText(Register.this, "Authentication failed." + task.getException().getMessage(),
                                             Toast.LENGTH_SHORT).show();
 
                                 }

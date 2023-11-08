@@ -55,10 +55,6 @@ public class Login extends AppCompatActivity {
         forgotPassword = findViewById(R.id.forgotpsswd);
 
 
-
-
-
-
         //Clicked "Click to Register", use REGISTER ACTIVITY
         registerNow.setOnClickListener(new View.OnClickListener(){
             @Override
