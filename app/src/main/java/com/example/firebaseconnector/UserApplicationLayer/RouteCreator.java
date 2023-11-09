@@ -86,7 +86,9 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        //database configuration
+		if (currentUser == null) { return; }
+
+		//database configuration
         ArrayList<String> addressesToVisit = new ArrayList<>();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(currentUser.getUid()).child("tripPlan").child(dayNum.toString());
 

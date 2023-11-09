@@ -80,4 +80,9 @@ public class AttractionListAdapter extends RecyclerView.Adapter<AttractionListAd
 	public int getItemCount() {
 		return attractionList.size();
 	}
+
+
+	public void setAttractionList(ArrayList<Attraction> list) {
+		this.attractionList = list;
+	}
 }

@@ -47,6 +47,11 @@ public class AttractionDetails extends AppCompatActivity {
 		// Get data passed from the previous Activity
 		Attraction attraction = getIntent().getParcelableExtra("DETAIL_DATA");
 
+		if (attraction == null) {
+			// Handle the situation where attraction is not passed correctly
+			throw new IllegalArgumentException("No Attraction was provided in the intent extras");
+		}
+
 		// Set the data to your views
 		TextView name = findViewById(R.id.cell_name);
 		TextView operatingTime = findViewById(R.id.cell_time);

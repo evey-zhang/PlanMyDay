@@ -66,17 +66,22 @@ dependencies {
     testImplementation ("androidx.test.uiautomator:uiautomator:2.2.0")
     testImplementation ("androidx.test:rules:1.5.0")
     testImplementation ("androidx.test:runner:1.5.2")
+	testImplementation ("org.mockito:mockito-core:4.+")
 
-    //INSTRUMENTED TESTS
+
+	//INSTRUMENTED TESTS
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation ("androidx.test.espresso:espresso-intents:3.5.1")
+	androidTestImplementation ("androidx.test.espresso:espresso-contrib:3.4.0")
+	androidTestImplementation ("androidx.test.espresso:espresso-intents:3.5.1")
     androidTestImplementation ("androidx.test.uiautomator:uiautomator:2.2.0")
     androidTestImplementation ("androidx.test:rules:1.5.0")
     androidTestImplementation ("androidx.test:runner:1.5.2")
+	androidTestImplementation ("org.mockito:mockito-core:4.+")
 
 
-    implementation ("com.google.android.gms:play-services-maps:17.0.1")
+
+	implementation ("com.google.android.gms:play-services-maps:17.0.1")
 	implementation ("com.google.android.gms:play-services-location:21.0.1")
 
 	//Google Maps services
