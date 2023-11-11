@@ -17,6 +17,7 @@ import com.example.firebaseconnector.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class AttractionListAdapter extends RecyclerView.Adapter<AttractionListAdapter.MyViewHolder> {
@@ -24,9 +25,15 @@ public class AttractionListAdapter extends RecyclerView.Adapter<AttractionListAd
 	private ArrayList<Attraction> attractionList;
 	private Context context;
 
+	public ArrayList<Attraction> getAttractionList() {
+		return attractionList;
+	}
+
 	public static class MyViewHolder extends RecyclerView.ViewHolder {
 		// Define your views here
-		TextView name, operatingTime, address;
+		public TextView name;
+		public TextView operatingTime;
+		public TextView address;
 		CardView cell;
 
 		public MyViewHolder(View v) {

@@ -39,7 +39,7 @@ public class AttractionDetails extends AppCompatActivity {
 	}
 
 	@Override
-    protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attraction_details);
 		setUpDatabaseReferenceForUser();
@@ -105,7 +105,7 @@ public class AttractionDetails extends AppCompatActivity {
 	}
 
 	// save attraction
-	private void saveAttractionToDB(Attraction targetAttraction) {
+	public void saveAttractionToDB(Attraction targetAttraction) {
 		db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 		DatabaseReference attractionListRef = db.child("attractionList");
 
@@ -148,7 +148,7 @@ public class AttractionDetails extends AppCompatActivity {
 
 
 	//remove attraction
-	private void removeAttractionFromDB(Attraction targetAttraction) {
+	public void removeAttractionFromDB(Attraction targetAttraction) {
 		db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid).child("attractionList");
 		db.addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override

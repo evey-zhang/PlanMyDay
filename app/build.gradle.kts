@@ -67,6 +67,8 @@ dependencies {
     testImplementation ("androidx.test:rules:1.5.0")
     testImplementation ("androidx.test:runner:1.5.2")
 	testImplementation ("org.mockito:mockito-core:4.+")
+	testImplementation ("org.robolectric:robolectric:4.5.1")
+
 
 
 	//INSTRUMENTED TESTS

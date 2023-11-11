@@ -46,8 +46,10 @@ public class PlanPageAdapter extends RecyclerView.Adapter<PlanPageAdapter.ViewHo
 		return dayPlan.size();
 	}
 
-	static class ViewHolder extends RecyclerView.ViewHolder {
-		TextView name, operatingTime, address;
+	public static class ViewHolder extends RecyclerView.ViewHolder {
+		public TextView name;
+		public TextView operatingTime;
+		public TextView address;
 
 		ViewHolder(View v) {
 			super(v);
