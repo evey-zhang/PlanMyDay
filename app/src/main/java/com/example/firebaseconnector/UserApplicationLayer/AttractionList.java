@@ -49,6 +49,8 @@ public class AttractionList extends AppCompatActivity {
 	private ArrayList<Attraction> attractionList;
 	private DatabaseReference db;
 
+
+
 	public void onBackPressed() {
 		super.onBackPressed();
 		//INPUT startactivity to lead back to home page

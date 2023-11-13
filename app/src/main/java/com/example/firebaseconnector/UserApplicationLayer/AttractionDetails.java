@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,11 +24,17 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AttractionDetails extends AppCompatActivity {
 
-	DatabaseReference db;
+	private DatabaseReference db;
 	FirebaseAuth mAuth = FirebaseAuth.getInstance();
 	FirebaseUser currentUser = mAuth.getCurrentUser();
 
 	String uid;
+
+	public AttractionDetails(String uid, DatabaseReference d){
+		this.db = d;
+		this.uid = uid;
+
+	}
 
 	public void onBackPressed() {
 		super.onBackPressed();

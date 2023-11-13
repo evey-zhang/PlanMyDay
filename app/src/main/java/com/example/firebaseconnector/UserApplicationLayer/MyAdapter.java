@@ -63,7 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.address.setText(attraction.getAddress());
 
         String operatingTimeString = attraction.getOpenTime() + " - " + attraction.getCloseTime();
-        holder.address.setText(operatingTimeString);
+        holder.operatingTime.setText(operatingTimeString);
 
 
         holder.removeButton.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +86,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public int getItemCount() {
         return attractionList.size();
     }
+    public void setAttractionList(ArrayList<Attraction> list) {
+        this.attractionList = list;
+    }
+
 
 
 }
