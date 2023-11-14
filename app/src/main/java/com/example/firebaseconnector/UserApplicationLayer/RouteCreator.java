@@ -44,8 +44,6 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
 
     public void onBackPressed() {
         super.onBackPressed();
-        //INPUT startactivity to lead back to home page
-//        startActivity;
         Intent intent = new Intent(getApplicationContext(), PlanPage.class);
         startActivity(intent);
         finish();

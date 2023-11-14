@@ -30,11 +30,7 @@ public class AttractionDetails extends AppCompatActivity {
 
 	String uid;
 
-	public AttractionDetails(String uid, DatabaseReference d){
-		this.db = d;
-		this.uid = uid;
 
-	}
 
 	public void onBackPressed() {
 		super.onBackPressed();

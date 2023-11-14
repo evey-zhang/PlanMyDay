@@ -47,6 +47,7 @@ dependencies {
 
     //J-UNIT INSTALLATION
     testImplementation("junit:junit:4.13.2")
+    testImplementation("junit:junit:4.12")
     androidTestImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
 
@@ -67,7 +68,7 @@ dependencies {
     testImplementation ("androidx.test:rules:1.5.0")
     testImplementation ("androidx.test:runner:1.5.2")
 	testImplementation ("org.mockito:mockito-core:4.+")
-	testImplementation ("org.robolectric:robolectric:4.5.1")
+	testImplementation ("org.robolectric:robolectric:4.11.1")
 
 
 
@@ -80,6 +81,7 @@ dependencies {
     androidTestImplementation ("androidx.test:rules:1.5.0")
     androidTestImplementation ("androidx.test:runner:1.5.2")
 	androidTestImplementation ("org.mockito:mockito-core:4.+")
+
 
 
 

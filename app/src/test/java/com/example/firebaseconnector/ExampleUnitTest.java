@@ -52,57 +52,5 @@ public class ExampleUnitTest {
 
 
 
-//    @Test
-//    public void testSignInSuccess() {
-//        // Find the email and password EditText fields and type in values.
-//        ViewInteraction emailField = Espresso.onView(ViewMatchers.withId(R.id.email));
-//        ViewInteraction passwordField = Espresso.onView(ViewMatchers.withId(R.id.password));
-//
-//        emailField.perform(ViewActions.typeText("newUser@gmail.com"));
-//        passwordField.perform(ViewActions.typeText("abcdef"));
-//
-//        // Close the soft keyboard (if it's open).
-//        Espresso.closeSoftKeyboard();
-//
-//        // Find the login button and click it.
-//        ViewInteraction loginButton = Espresso.onView(ViewMatchers.withId(R.id.loginButton));
-//        loginButton.perform(ViewActions.click());
-//
-//        // Validate that the login was successful (e.g., check for a success message).
-//        ViewInteraction successMessage = Espresso.onView(ViewMatchers.withText("Login successful."));
-//        successMessage.check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-//
-//
-//    }
-
-    @Test
-    public void testSignInFailure() {
-
-    }
-
-    @Test
-    public void testSignUpSuccess() {
-
-    }
-
-    @Test
-    public void testSignUpFailure() {
-
-    }
-
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
-
-
-    //TEST: CHECK IF SAVING ATTRACTION ADDS IT TO THE SAVED ATTRACTION LIST
-    @Test
-    public void saveAttractionTest(){
-//        DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
-//        DatabaseReference attractionListRef = db.child("attractionList");
-
-    }
-
 
 }
