@@ -22,8 +22,10 @@ public class TripPlanner {
             for (int j = i; j < savedAttractions.size(); j += numDays) {
                 day.add(savedAttractions.get(j));
             }
-            sortByCloseTime(day);
-            trip.add(day);
+            if(day.size() != 0) {
+                sortByCloseTime(day);
+                trip.add(day);
+            }
         }
 
         return trip;
