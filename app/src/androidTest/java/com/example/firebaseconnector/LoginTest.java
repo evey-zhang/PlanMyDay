@@ -49,7 +49,7 @@ public class LoginTest {
 
 
         emailField.perform(ViewActions.typeText("wrongUser@gmail.com"));
-        passwordField.perform(ViewActions.typeText("doesntwork"));
+        passwordField.perform(ViewActions.typeText("wrongUser"));
 
         // Close the soft keyboard (if it's open).
         Espresso.closeSoftKeyboard();
@@ -132,7 +132,7 @@ public class LoginTest {
 
         // Validate that the login was successful (e.g., check for a success message).
         String expectedToastText = "Login successful.";
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         Espresso.onView(ViewMatchers.withText(expectedToastText)).inRoot(ToastMatcher.isToast()).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 
     }

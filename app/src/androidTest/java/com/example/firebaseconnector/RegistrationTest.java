@@ -98,7 +98,8 @@ public class RegistrationTest {
         //make sure the field is cleared first
         emailField.perform(ViewActions.typeText(""));
         passwordField.perform(ViewActions.typeText(""));
-        emailField.perform(ViewActions.typeText("newUser3@gmail.com"));
+        //--------------USER INPUT MUST CHANGE HERE --> ADD 1 TO NEWUSER TO CREATE NEW ACCOUNT --------------
+        emailField.perform(ViewActions.typeText("newUser5@gmail.com"));
         passwordField.perform(ViewActions.typeText("abcdef"));
         Thread.sleep(2000);
 

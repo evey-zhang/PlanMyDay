@@ -68,7 +68,7 @@ public class GoogleMapAppTest {
         ViewInteraction openButton = onView(ViewMatchers.withId(R.id.openInApp));
         openButton.perform(ViewActions.click());
         //launch google maps
-
+        Thread.sleep(1000);
         Intents.intended(hasPackage("com.google.android.apps.maps"));
         Intents.release();
 
