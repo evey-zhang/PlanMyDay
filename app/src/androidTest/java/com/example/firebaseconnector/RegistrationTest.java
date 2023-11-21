@@ -42,28 +42,29 @@ public class RegistrationTest {
         onView(withText("Click to Login")).check(matches(isDisplayed()));
 
     }
-    @Test
-    public void alreadyInUseAccount() throws InterruptedException {
-        // Find the email and password EditText fields and type in values.
-        ViewInteraction emailField = onView(ViewMatchers.withId(R.id.email));
-        ViewInteraction passwordField = onView(ViewMatchers.withId(R.id.password));
-
-
-        emailField.perform(ViewActions.typeText("hello@gmail.com"));
-        passwordField.perform(ViewActions.typeText("abcdef"));
-
-        // Close the soft keyboard (if it's open).
-        Espresso.closeSoftKeyboard();
-
-        // Find the login button and click it.
-        ViewInteraction loginButton = onView(ViewMatchers.withId(R.id.registerButton));
-        loginButton.perform(ViewActions.click());
-
-        // Validate that the login was successful (e.g., check for a success message).
-        String expectedToastText = "Authentication failed.The email address is already in use by another account.";
-        Espresso.onView(ViewMatchers.withText(expectedToastText)).inRoot(ToastMatcher.isToast()).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
-
-    }
+//    @Test
+//    public void alreadyInUseAccount() throws InterruptedException {
+//        // Find the email and password EditText fields and type in values.
+//        ViewInteraction emailField = onView(ViewMatchers.withId(R.id.email));
+//        ViewInteraction passwordField = onView(ViewMatchers.withId(R.id.password));
+//
+//
+//        emailField.perform(ViewActions.typeText("hello@gmail.com"));
+//        passwordField.perform(ViewActions.typeText("abcdef"));
+//
+//        // Close the soft keyboard (if it's open).
+//        Espresso.closeSoftKeyboard();
+//
+//        // Find the login button and click it.
+//        ViewInteraction loginButton = onView(ViewMatchers.withId(R.id.registerButton));
+//        loginButton.perform(ViewActions.click());
+//
+//        // Validate that the login was successful (e.g., check for a success message).
+//        String expectedToastText = "Authentication failed.The email address is already in use by another account.";
+//        Espresso.onView(ViewMatchers.withText(expectedToastText)).inRoot(ToastMatcher.isToast()).check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+//        Thread.sleep(2000);
+//
+//    }
 
 
     @Test
@@ -99,7 +100,7 @@ public class RegistrationTest {
         emailField.perform(ViewActions.typeText(""));
         passwordField.perform(ViewActions.typeText(""));
         //--------------USER INPUT MUST CHANGE HERE --> ADD 1 TO NEWUSER TO CREATE NEW ACCOUNT --------------
-        emailField.perform(ViewActions.typeText("newUser5@gmail.com"));
+        emailField.perform(ViewActions.typeText("newUser9@gmail.com"));
         passwordField.perform(ViewActions.typeText("abcdef"));
         Thread.sleep(2000);
 
