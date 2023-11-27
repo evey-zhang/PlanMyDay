@@ -100,7 +100,7 @@ public class RegistrationTest {
         emailField.perform(ViewActions.typeText(""));
         passwordField.perform(ViewActions.typeText(""));
         //--------------USER INPUT MUST CHANGE HERE --> ADD 1 TO NEWUSER TO CREATE NEW ACCOUNT --------------
-        emailField.perform(ViewActions.typeText("newUser9@gmail.com"));
+        emailField.perform(ViewActions.typeText("newUser10@gmail.com"));
         passwordField.perform(ViewActions.typeText("abcdef"));
         Thread.sleep(2000);
 

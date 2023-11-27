@@ -2,9 +2,11 @@ package com.example.firebaseconnector.UserApplicationLayer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
-import android.location.Address;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.firebaseconnector.R;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -26,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.location.FusedLocationProviderClient;
+
 import com.google.maps.DirectionsApi;
 import com.google.maps.DirectionsApiRequest;
 import com.google.maps.GeoApiContext;
@@ -41,6 +46,8 @@ import java.util.List;
 
 public class RouteCreator extends AppCompatActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
+    private FusedLocationProviderClient fusedLocationClient;
+
 
     public void onBackPressed() {
         super.onBackPressed();
@@ -48,39 +55,69 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
         startActivity(intent);
         finish();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_route_creator);
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
 
-        //setup map view
+
+        // Check and request location permissions
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } else {
+            initializeMap();
+        }
+
+    }
+
+    private void initializeMap() {
+        // Setup map view
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.maps);
 
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-
     }
+
+
+
+
     @Override // triggered to add contents to the map
     public void onMapReady(@NonNull GoogleMap googleMap) {
-		final List<String> addressesToVisit = new ArrayList<>();
+        final List<String> addressesToVisit = new ArrayList<>();
         Boolean isDriving = getIntent().getBooleanExtra("IS_DRIVE_MODE", true);
         int dayNumber = getIntent().getIntExtra("DAY_NUMBER", 0);
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
 
-        getAddressList(new DataCallback() {
-            @Override
-            public void onDataReceived(ArrayList<String> data) {
-                addressesToVisit.clear();
-                addressesToVisit.addAll(data);
-                mMap = googleMap;
+        fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
+            String currentLocation = null;
+            if (location != null) {
+                double currentLatitude = location.getLatitude();
+                double currentLongitude = location.getLongitude();
+                System.out.print("this is the currentLAT LONG " + Double.toString(currentLongitude) +"," +  Double.toString(currentLatitude));
+                currentLocation = currentLatitude + "," + currentLongitude;
 
             }
-        } , isDriving, dayNumber);
+            getAddressList(new DataCallback() {
+                @Override
+                public void onDataReceived(ArrayList<String> data) {
+                    addressesToVisit.clear();
+                    addressesToVisit.addAll(data);
+                    mMap = googleMap;
+
+                }
+            }, isDriving, dayNumber, currentLocation);
+        });
 
     }
-    public void getAddressList(final DataCallback callback, Boolean isDriveMode, Integer dayNum) {
+    public void getAddressList(final DataCallback callback, Boolean isDriveMode, Integer dayNum, String currentLocation) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -117,7 +154,7 @@ public class RouteCreator extends AppCompatActivity implements OnMapReadyCallbac
                             .build();
 
                     // Use the Google Maps Directions API to fetch route information
-                    String origin ="3601 Trousdale Pkway, Los Angeles, CA, 90089, USA";
+                    String origin = currentLocation;
                     String destination = addressesToVisit.get(addressesToVisit.size()-1);
                     List<DirectionsApiRequest.Waypoint> waypointArr = new ArrayList<>();
                     String waypointsStr = "";
