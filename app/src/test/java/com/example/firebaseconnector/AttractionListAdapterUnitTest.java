@@ -34,7 +34,7 @@ public class AttractionListAdapterUnitTest {
 	@Mock
 	private CardView mockCellCardView;
 
-	private USCAttractionListAdapter.MyViewHolder viewHolder;
+	private USCAttractionListAdapter.USCAttractionViewHolder viewHolder;
 	private USCAttractionListAdapter adapter;
 	private ArrayList<Attraction> attractionList;
 
@@ -55,7 +55,7 @@ public class AttractionListAdapterUnitTest {
 		when(mockView.findViewById(R.id.cell_address)).thenReturn(mockAddressTextView);
 		when(mockView.findViewById(R.id.cell_container)).thenReturn(mockCellCardView);
 
-		viewHolder = new USCAttractionListAdapter.MyViewHolder(mockView);
+		viewHolder = new USCAttractionListAdapter.USCAttractionViewHolder(mockView);
 		Attraction testAttraction = new Attraction("Test Name", "9 AM", "5 PM", "Test Address");
 		attractionList.add(testAttraction);
 

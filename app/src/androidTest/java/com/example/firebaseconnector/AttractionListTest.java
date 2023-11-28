@@ -49,7 +49,7 @@ public class AttractionListTest {
 
 		// Launch the activity and update the RecyclerView's adapter with the mock list
 		activityScenarioRule.getScenario().onActivity(activity -> {
-			RecyclerView recyclerView = activity.findViewById(R.id.recycler_view);
+			RecyclerView recyclerView = activity.findViewById(R.id.usc_recycler_view);
 			USCAttractionListAdapter adapter = (USCAttractionListAdapter) recyclerView.getAdapter();
 
 			if (adapter != null) {
@@ -78,21 +78,21 @@ public class AttractionListTest {
 
 	@Test
 	public void testRecyclerViewVisibility() {
-		onView(withId(R.id.recycler_view))
+		onView(withId(R.id.usc_recycler_view))
 				.check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
 	}
 
 	@Test
 	public void testRecyclerViewItemContent() {
-		onView(withId(R.id.recycler_view))
+		onView(withId(R.id.usc_recycler_view))
 				.perform(RecyclerViewActions.scrollToPosition(0))
 				.check(matches(hasDescendant(withText("Attraction 1"))));
 
-		onView(withId(R.id.recycler_view))
+		onView(withId(R.id.usc_recycler_view))
 				.perform(RecyclerViewActions.scrollToPosition(1))
 				.check(matches(hasDescendant(withText("Attraction 2"))));
 
-		onView(withId(R.id.recycler_view))
+		onView(withId(R.id.usc_recycler_view))
 				.perform(RecyclerViewActions.scrollToPosition(2))
 				.check(matches(hasDescendant(withText("Attraction 3"))));
 
@@ -103,7 +103,7 @@ public class AttractionListTest {
 	@Test
 	public void testNavigationToAttractionDetails() {
 
-		onView(withId(R.id.recycler_view))
+		onView(withId(R.id.usc_recycler_view))
 				.perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
 
 		// Check if the intent to start AttractionDetails activity is sent
