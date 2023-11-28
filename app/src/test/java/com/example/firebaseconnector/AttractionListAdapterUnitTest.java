@@ -3,7 +3,6 @@ package com.example.firebaseconnector;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 
 import com.example.firebaseconnector.UserApplicationLayer.Attraction;
-import com.example.firebaseconnector.UserApplicationLayer.AttractionListAdapter;
+import com.example.firebaseconnector.UserApplicationLayer.USCAttractionListAdapter;
 
 import java.util.ArrayList;
 
@@ -35,8 +34,8 @@ public class AttractionListAdapterUnitTest {
 	@Mock
 	private CardView mockCellCardView;
 
-	private AttractionListAdapter.MyViewHolder viewHolder;
-	private AttractionListAdapter adapter;
+	private USCAttractionListAdapter.MyViewHolder viewHolder;
+	private USCAttractionListAdapter adapter;
 	private ArrayList<Attraction> attractionList;
 
 	@Before
@@ -44,7 +43,7 @@ public class AttractionListAdapterUnitTest {
 		MockitoAnnotations.initMocks(this);
 
 		attractionList = new ArrayList<>();
-		adapter = new AttractionListAdapter(mockContext, attractionList);
+		adapter = new USCAttractionListAdapter(mockContext, attractionList);
 	}
 
 
@@ -56,7 +55,7 @@ public class AttractionListAdapterUnitTest {
 		when(mockView.findViewById(R.id.cell_address)).thenReturn(mockAddressTextView);
 		when(mockView.findViewById(R.id.cell_container)).thenReturn(mockCellCardView);
 
-		viewHolder = new AttractionListAdapter.MyViewHolder(mockView);
+		viewHolder = new USCAttractionListAdapter.MyViewHolder(mockView);
 		Attraction testAttraction = new Attraction("Test Name", "9 AM", "5 PM", "Test Address");
 		attractionList.add(testAttraction);
 

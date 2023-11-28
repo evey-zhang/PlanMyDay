@@ -13,10 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
-
 import com.example.firebaseconnector.UserApplicationLayer.Attraction;
-import com.example.firebaseconnector.UserApplicationLayer.AttractionListAdapter;
 import com.example.firebaseconnector.UserApplicationLayer.MyAdapter;
 
 import java.util.ArrayList;

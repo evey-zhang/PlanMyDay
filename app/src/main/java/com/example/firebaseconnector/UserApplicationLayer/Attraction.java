@@ -19,10 +19,12 @@ public class Attraction implements Parcelable {
 	private String closeTime;
 	private String description;
 
+	private boolean atUSC;
+
 	public Attraction() {
 	}
 
-    public Attraction(String id, String name, String address, String longitude, String latitude, String openTime, String closeTime, String description) {
+    public Attraction(String id, String name, String address, String longitude, String latitude, String openTime, String closeTime, String description, boolean atUSC) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -31,6 +33,7 @@ public class Attraction implements Parcelable {
         this.openTime = openTime;
         this.closeTime = closeTime;
         this.description = description;
+		this.atUSC = atUSC;
     }
 
     public Attraction(String name, String address, String openTime, String closeTime) {
@@ -49,6 +52,7 @@ public class Attraction implements Parcelable {
 		openTime = in.readString();
 		closeTime = in.readString();
 		description = in.readString();
+		atUSC = in.readBoolean();
 	}
 
 	public static final Creator<Attraction> CREATOR = new Creator<Attraction>() {
@@ -74,6 +78,8 @@ public class Attraction implements Parcelable {
 	public String getName() {
 		return name;
 	}
+
+	public boolean isAtUSC() { return atUSC; }
 
 	public void setName(String name) {
 		this.name = name;

@@ -2,25 +2,21 @@ package com.example.firebaseconnector.UserApplicationLayer;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.firebaseconnector.R;
 
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
-public class AttractionListAdapter extends RecyclerView.Adapter<AttractionListAdapter.MyViewHolder> {
+public class USCAttractionListAdapter extends RecyclerView.Adapter<USCAttractionListAdapter.USCAttractionViewHolder> {
 
 	private ArrayList<Attraction> attractionList;
 	private Context context;
@@ -29,14 +25,14 @@ public class AttractionListAdapter extends RecyclerView.Adapter<AttractionListAd
 		return attractionList;
 	}
 
-	public static class MyViewHolder extends RecyclerView.ViewHolder {
+	public static class USCAttractionViewHolder extends RecyclerView.ViewHolder {
 		// Define your views here
 		public TextView name;
 		public TextView operatingTime;
 		public TextView address;
 		CardView cell;
 
-		public MyViewHolder(View v) {
+		public USCAttractionViewHolder(View v) {
 			super(v);
 			name = v.findViewById(R.id.cell_name);
 			operatingTime = v.findViewById(R.id.cell_time);
@@ -46,23 +42,21 @@ public class AttractionListAdapter extends RecyclerView.Adapter<AttractionListAd
 	}
 
 	// Constructor for the adapter
-	public AttractionListAdapter(Context context, ArrayList<Attraction> attractionList) {
+	public USCAttractionListAdapter(Context context, ArrayList<Attraction> attractionList) {
 		this.context = context;
 		this.attractionList = attractionList;
 	}
 
-	// Create new views (invoked by the layout manager)
+	@NonNull
 	@Override
-	public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		// create a new view
+	public USCAttractionListAdapter.USCAttractionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 		View v = LayoutInflater.from(context)
 				.inflate(R.layout.activity_attraction_list_cell, parent, false);
-		return new MyViewHolder(v);
+		return new USCAttractionViewHolder(v);
 	}
 
-	// Replace the contents of a view (invoked by the layout manager)
 	@Override
-	public void onBindViewHolder(MyViewHolder holder, int position) {
+	public void onBindViewHolder(@NonNull USCAttractionListAdapter.USCAttractionViewHolder holder, int position) {
 		Attraction attraction = attractionList.get(position);
 		holder.name.setText(attraction.getName());
 		holder.address.setText(attraction.getAddress());

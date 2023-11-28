@@ -1,10 +1,6 @@
 package com.example.firebaseconnector;
 
-import androidx.collection.CircularArray;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.espresso.Espresso;
-import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.Intents;
@@ -22,7 +18,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.hasDescendant;
 import com.example.firebaseconnector.UserApplicationLayer.Attraction;
 import com.example.firebaseconnector.UserApplicationLayer.AttractionDetails;
 import com.example.firebaseconnector.UserApplicationLayer.AttractionList;
-import com.example.firebaseconnector.UserApplicationLayer.AttractionListAdapter;
+import com.example.firebaseconnector.UserApplicationLayer.USCAttractionListAdapter;
 
 import org.junit.After;
 import org.junit.Before;
@@ -37,7 +33,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.instanceOf;
+
 @RunWith(AndroidJUnit4.class)
 public class AttractionListTest {
 
@@ -54,7 +50,7 @@ public class AttractionListTest {
 		// Launch the activity and update the RecyclerView's adapter with the mock list
 		activityScenarioRule.getScenario().onActivity(activity -> {
 			RecyclerView recyclerView = activity.findViewById(R.id.recycler_view);
-			AttractionListAdapter adapter = (AttractionListAdapter) recyclerView.getAdapter();
+			USCAttractionListAdapter adapter = (USCAttractionListAdapter) recyclerView.getAdapter();
 
 			if (adapter != null) {
 				adapter.setAttractionList(mockAttractions);
