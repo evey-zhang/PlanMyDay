@@ -54,12 +54,6 @@
 			android:background="@drawable/line_3"
 			android:textColor="#000000"
 			android:textSize="12sp" />
-		<ImageButton
-			android:id="@+id/backButton"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-
-			app:srcCompat="?attr/homeAsUpIndicator" />
 
 
 		<androidx.cardview.widget.CardView
