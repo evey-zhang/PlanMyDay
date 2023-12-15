@@ -24,7 +24,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAbn_NBmNZ-SNkxstD7Amh2v6x1NXdgnHs" />
+            android:value="INSERT HERE" />
 
         <activity
             android:name=".UserApplicationLayer.AttractionDetails"
